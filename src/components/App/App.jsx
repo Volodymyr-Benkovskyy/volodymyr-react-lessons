@@ -2,7 +2,7 @@ import "./App.css";
 
 import Cart from "../Cart/Cart";
 import { Component } from "react";
-import Counter from "../Counter/Counter";
+//import Counter from "../Counter/Counter";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
 
