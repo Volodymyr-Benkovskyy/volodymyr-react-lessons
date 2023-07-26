@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import s from "./TodoList.module.css";
 
-const TodoList = ({ todo = [], removeTodo, updateTodoStatus }) => {
+const TodoList = ({ todo = [], removeTodo, updateTodoStatus}) => {
   return (
     <ul className={s.container}>
       {todo.map(({ title, descr, id, date, priority, isDone }) => (

@@ -9,6 +9,7 @@ const priorityOptions = {
 };
 
 class ToDoForm extends Component {
+  // todo
   state = {
     date: "2023-02-02",
     title: "",
@@ -16,10 +17,10 @@ class ToDoForm extends Component {
     priority: "",
     dayPeriods: [],
   };
-
+// метод для зміни  стейту у формі при події onChange 
   handleChange = (e) => {
     const { name, value, type, checked } = e.target;
-
+    // для чекбоксів  
     if (type === "checkbox") {
       this.setState((prevState) => ({
         [name]: checked
@@ -28,10 +29,10 @@ class ToDoForm extends Component {
       }));
       return;
     }
-
+    // записує змінене значення поля в name
     this.setState({ [name]: value });
   };
-
+ // метод сабміт який відправляє нашу тудушку в стейт class TodoPage
   handleSubmit = (e) => {
     e.preventDefault();
     this.props.addTodo({ ...this.state, id: uuidv4(), isDone: false });
@@ -40,6 +41,9 @@ class ToDoForm extends Component {
   render() {
     return (
       <form className={s.form} onSubmit={this.handleSubmit}>
+
+        {/* ========== input ========== */}
+
         <label className={s.label}>
           <span> Date </span>
           <input
@@ -50,6 +54,7 @@ class ToDoForm extends Component {
             onChange={this.handleChange}
           />
         </label>
+
         <label className={s.label}>
           <span> Title </span>
           <input
@@ -70,6 +75,9 @@ class ToDoForm extends Component {
             onChange={this.handleChange}
           />
         </label>
+        {/* ========== // input // ========== */}
+ 
+        {/* ========= Radio Button =========== */}
 
         <div className={s.labelWrapper}>
           <div className={s.radioWrapper}>
@@ -86,6 +94,8 @@ class ToDoForm extends Component {
               Low
             </label>
           </div>
+
+
           <div className={s.radioWrapper}>
             <input
               id="formRadioMedium"
@@ -103,6 +113,7 @@ class ToDoForm extends Component {
               Medium
             </label>
           </div>
+
           <div className={s.radioWrapper}>
             <input
               id="formRadioHigh"
@@ -118,6 +129,9 @@ class ToDoForm extends Component {
             </label>
           </div>
         </div>
+        {/* ========= // Radio Button // =========== */}
+           
+         {/* =========  Checkbox ===================*/}
         <div>
           <label>
             Morning
@@ -150,6 +164,10 @@ class ToDoForm extends Component {
             />
           </label>
         </div>
+
+         {/* =========== // Checkbox // ===================*/}
+        
+
         <button className={s.submit} type="submit">
           Ok
         </button>

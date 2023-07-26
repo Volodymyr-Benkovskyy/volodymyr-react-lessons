@@ -7,25 +7,21 @@ import { todo as todoList } from "../../data/todo";
 class TodoPage extends Component {
   state = {
     todo: todoList,
-    priority: "all",
+    priority: "all"
   };
 
-  changePriority = (e) => {
-    const { value } = e.target;
-    console.log("value :>> ", value);
-    this.setState({ priority: value });
-  };
 
+  // задача метода взяти todo і записати в стейт 
   addTodo = (todo) => {
-    // find -> el | undefined || some -> true | false
-    this.setState((prevState) => ({ todo: [...prevState.todo, todo] }));
+    this.setState((prevState) => ({ todo: [...prevState.todo, todo] }))
   };
 
+ //  метод видаляє тудушку з колекції тобто з масиву
   removeTodo = (id) => {
-    this.setState((prev) => ({ todo: prev.todo.filter((el) => el.id !== id) }));
+    this.setState((prevState) => ({ todo: prevState.todo.filter((el) => el.id !== id) }))
   };
-
-  updateTodoStatus = (id) => {
+  // обновлює статус тудушки на вик..трю  не викон...фолс
+ updateTodoStatus = (id) => {
     this.setState((prev) => ({
       todo: prev.todo.map((el) =>
         el.id !== id ? el : { ...el, isDone: !el.isDone }
@@ -33,30 +29,77 @@ class TodoPage extends Component {
     }));
   };
 
+// додає пріоритетність тудушці 
+  changePriority = (e) => {
+    const { value } = e.target
+    console.log("value :>> ", value);
+    this.setState({priority: value})
+  }
+
+// фільтрує тудушки по пріоріті 
   filterTodo = () => {
     const { todo, priority } = this.state;
+
     if (priority === "all") return todo;
-    return todo.filter((el) => el.priority === priority);
-  };
+    return todo.filter((el)=> el.priority === priority)
+  }
 
   render() {
-    const filterdTodo = this.filterTodo();
 
+    const filterdTodo = this.filterTodo()
     return (
       <>
-        <ToDoForm addTodo={this.addTodo} />
-        <PrioritySelect
-          priority={this.state.priority}
+        <ToDoForm  addTodo={ this.addTodo} />
+        <PrioritySelect priority={this.state.priority}
           changePriority={this.changePriority}
+
         />
-        <ToDoList
-          todo={filterdTodo}
+        <ToDoList todo={filterdTodo}
           removeTodo={this.removeTodo}
-          updateTodoStatus={this.updateTodoStatus}
-        />
+          updateTodoStatus={this.updateTodoStatus} />
       </>
     );
   }
 }
 
 export default TodoPage;
+
+
+/*  addTodo={this.addTodo} */
+
+  /* todo={filterdTodo}
+          removeTodo={this.removeTodo}
+          updateTodoStatus={this.updateTodoStatus} */
+                /* priority={this.state.priority}
+          changePriority={this.changePriority} */
+
+          
+ /*  changePriority = (e) => {
+    const { value } = e.target;
+    console.log("value :>> ", value);
+    this.setState({ priority: value });
+  }; */
+
+    // find -> el | undefined || some -> true | false
+
+ /*  addTodo = (todo) => {
+    this.setState((prevState) => ({ todo: [...prevState.todo, todo] }));
+  }; */
+
+ /*  removeTodo = (id) => {
+    this.setState((prev) => ({ todo: prev.todo.filter((el) => el.id !== id) }));
+  }; */
+
+ /*  updateTodoStatus = (id) => {
+    this.setState((prev) => ({
+      todo: prev.todo.map((el) =>
+        el.id !== id ? el : { ...el, isDone: !el.isDone }
+      ),
+    }));
+  }; */
+
+/*   filterTodo = () => {
+    const { todo, priority } = this.state;
+    if (priority === "all") return todo;
+    return todo.filter((el) => el.priority === priority);
+  }; */
