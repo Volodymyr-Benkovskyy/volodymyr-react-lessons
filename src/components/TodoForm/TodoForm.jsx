@@ -8,6 +8,9 @@ const priorityOptions = {
   HIGH: "high",
 };
 
+
+
+
 class ToDoForm extends Component {
   // todo
   state = {
@@ -17,6 +20,22 @@ class ToDoForm extends Component {
     priority: "",
     dayPeriods: [],
   };
+
+
+   
+  
+//static getDerivedStateFromProps викликається перед рендерингом компонента,
+ //отримує нові властивості та поточний стан,
+ //і повертає новий стан компонента зі зміненими або оновленими даними на основі отриманих пропсів.
+
+  static getDerivedStateFromProps(props, state) {
+    console.log('props :>> ', props);
+    console.log('state :>> ', state);
+  const newstate = { desc: " getDerivedStateFromProps" };
+  return newstate;
+}
+
+
 // метод для зміни  стейту у формі при події onChange 
   handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -39,6 +58,8 @@ class ToDoForm extends Component {
   };
 
   render() {
+    console.log("form render");
+    console.log('this.state :>> ', this.state);
     return (
       <form className={s.form} onSubmit={this.handleSubmit}>
 
