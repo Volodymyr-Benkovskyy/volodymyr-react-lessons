@@ -7,9 +7,31 @@ import { todo as todoList } from "../../data/todo";
 class TodoPage extends Component {
   state = {
     todo: todoList,
-    priority: "all"
+    priority: "all",
+    isOpen: false,
   };
 
+  //У даному випадку метод getSnapshotBeforeUpdate()
+  //повертає висоту(висоту документа) document.body.clientHeight
+  // висоту контенту на баді
+  getSnapshotBeforeUpdate() {
+    return  document.body.clientHeight;
+  }
+
+  /* метод життєвого циклу компонента в React,
+   який викликається після кожного оновлення компонента і
+    дозволяє виконати додаткові дії на основі попередніх властивостей та стану компонента. */
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    console.log("Todo Page CDU");
+    if (prevState.todo !== this.state.todo) {
+    console.log('snapshot :>> ', snapshot);
+    localStorage.setItem("todo", JSON.stringify(this.state.todo));
+    }
+    
+    if (prevState.priority !== this.state.priority) {
+      this.setState({ isOpen: true })
+    }
+  }
 
   // задача метода взяти todo і записати в стейт 
   addTodo = (todo) => {

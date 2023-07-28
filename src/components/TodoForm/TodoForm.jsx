@@ -1,4 +1,4 @@
-import { Component } from "react";
+import { PureComponent } from "react";  /* Component */
 import s from "./TodoForm.module.scss";
 import { v4 as uuidv4 } from "uuid";
 
@@ -9,10 +9,11 @@ const priorityOptions = {
 };
 
 
+//PureComponent - це підклас класового компонента у React,
+//який автоматично реалізує метод shouldComponentUpdate()
 
-
-class ToDoForm extends Component {
-  // todo
+class ToDoForm extends  PureComponent {
+  
   state = {
     date: "2023-02-02",
     title: "",
@@ -21,20 +22,49 @@ class ToDoForm extends Component {
     dayPeriods: [],
   };
 
-
-   
-  
 //static getDerivedStateFromProps викликається перед рендерингом компонента,
  //отримує нові властивості та поточний стан,
  //і повертає новий стан компонента зі зміненими або оновленими даними на основі отриманих пропсів.
 
   static getDerivedStateFromProps(props, state) {
-    console.log('props :>> ', props);
-    console.log('state :>> ', state);
-  const newstate = { desc: " getDerivedStateFromProps" };
-  return newstate;
+    // console.log('props :>> ', props);
+    // console.log('state :>> ', state);
+  console.log("Form  getDerivedStateFromProps"); 
+  //const newstate = { desc: " getDerivedStateFromProps" };
+  return null;
 }
+ 
+//componentDidMount - монтування
+// може дозволяти або забороняти рендер 
+//метод, що виконується один раз після рендерингу компонента, 
+//ідеальний для початкової ініціалізації та взаємодії з DOM та зовнішніми джерелами даних.
+  componentDidMount() {
+    console.log('Form CDM');
+  }
 
+
+  
+   //Він викликається автоматично перед перерендерингом компонента і
+   //дозволяє контролювати, чи потрібно виконувати перерендеринг компонента або ні. 
+  
+  // shouldComponentUpdate(newprops, newstate) {
+  //   console.log('newprops :>> ', newprops);
+  //   console.log('newstate :>> ', newstate);
+  //   console.log('this.state :>> ', this.state);
+
+  // Перевірка на зміну деяких властивостей стану (state) компонента
+  // Якщо знайдено зміну, то повертаємо true (рендерити компонент)
+    // if (
+    //   newstate.date !== this.state.data ||
+    //   newstate.title !== this.state.title ||
+    //   newstate.descr !== this.state.descr ||
+    //   newstate.priority !== this.state.priority    
+    // ) return true // render => true
+    
+
+  // Якщо жодних змін не знайдено, повертаємо false (не рендерити компонент)
+  //   return false // render =>  false
+ // }
 
 // метод для зміни  стейту у формі при події onChange 
   handleChange = (e) => {
@@ -59,7 +89,7 @@ class ToDoForm extends Component {
 
   render() {
     console.log("form render");
-    console.log('this.state :>> ', this.state);
+ 
     return (
       <form className={s.form} onSubmit={this.handleSubmit}>
 
