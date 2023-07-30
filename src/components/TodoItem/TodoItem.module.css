@@ -1,23 +1,14 @@
-.close {
+/* .close {
   display: inline-block;
   color: red;
   margin: 0 10px;
   cursor: pointer;
-}
+} */
 
-.container {
-  margin: 0 auto;
-  width: 800px;
-
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-gap: 20px;
-}
-
-/* .toDoItem {
+.toDoItem {
   padding: 10px;
   background-color: green;
-   background-color: rgb(48, 142, 144); 
+  /* background-color: rgb(48, 142, 144); */
   color: rgb(61, 56, 10);
 }
 
@@ -28,14 +19,14 @@
   padding: 5px;
 }
 
+/* ======= */
 
-
- .title,
+.title,
 .descr {
   &.isDone {
     text-decoration: line-through;
   }
-} 
+}
 
 .todoBtn {
   display: block;
@@ -57,4 +48,3 @@
   height: 30px;
   fill: darkblue;
 }
- */

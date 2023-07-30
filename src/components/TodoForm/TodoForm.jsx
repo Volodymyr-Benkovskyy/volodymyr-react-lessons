@@ -29,7 +29,7 @@ class ToDoForm extends  PureComponent {
   static getDerivedStateFromProps(props, state) {
     // console.log('props :>> ', props);
     // console.log('state :>> ', state);
-  console.log("Form  getDerivedStateFromProps"); 
+  //console.log("Form  getDerivedStateFromProps"); 
   //const newstate = { desc: " getDerivedStateFromProps" };
   return null;
 }
@@ -39,7 +39,7 @@ class ToDoForm extends  PureComponent {
 //метод, що виконується один раз після рендерингу компонента, 
 //ідеальний для початкової ініціалізації та взаємодії з DOM та зовнішніми джерелами даних.
   componentDidMount() {
-    console.log('Form CDM');
+    //console.log('Form CDM');
   }
 
 
@@ -88,7 +88,7 @@ class ToDoForm extends  PureComponent {
   };
 
   render() {
-    console.log("form render");
+    //console.log("form render");
  
     return (
       <form className={s.form} onSubmit={this.handleSubmit}>
@@ -106,7 +106,7 @@ class ToDoForm extends  PureComponent {
           />
         </label>
 
-        <label className={s.label}>
+       {/*  <label className={s.label}>
           <span> Title </span>
           <input
             className={s.input}
@@ -115,7 +115,8 @@ class ToDoForm extends  PureComponent {
             value={this.state.title}
             onChange={this.handleChange}
           />
-        </label>
+        </label> */}
+
         <label className={s.label}>
           <span> Description </span>
           <input

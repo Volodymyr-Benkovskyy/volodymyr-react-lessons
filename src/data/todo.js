@@ -25,7 +25,7 @@ export const todo = [
     priority: "high",
     isDone: false,
   },
-  {
+  /* {
     id: uuidv4(),
     date: "2022-05-03",
     title: "Title-4",
@@ -48,5 +48,5 @@ export const todo = [
     descr: "Description for title - 4",
     priority: "medium",
     isDone: false,
-  },
+  }, */
 ];

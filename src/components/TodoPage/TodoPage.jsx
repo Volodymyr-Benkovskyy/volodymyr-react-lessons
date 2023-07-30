@@ -3,7 +3,7 @@ import PrioritySelect from "../PrioritySelect/PrioritySelect";
 import ToDoForm from "../TodoForm/TodoForm";
 import ToDoList from "../TodoList/TodoList";
 import { todo as todoList } from "../../data/todo";
-
+import { v4 } from 'uuid';
 class TodoPage extends Component {
   state = {
     todo: todoList,
@@ -15,22 +15,39 @@ class TodoPage extends Component {
   //повертає висоту(висоту документа) document.body.clientHeight
   // висоту контенту на баді
   getSnapshotBeforeUpdate() {
-    return  document.body.clientHeight;
+    return  document.body.clientHeight; 
   }
 
   /* метод життєвого циклу компонента в React,
    який викликається після кожного оновлення компонента і
     дозволяє виконати додаткові дії на основі попередніх властивостей та стану компонента. */
   componentDidUpdate(prevProps, prevState, snapshot) {
-    console.log("Todo Page CDU");
+    //console.log("Todo Page CDU");
     if (prevState.todo !== this.state.todo) {
-    console.log('snapshot :>> ', snapshot);
+   
+
+      //Цей код з використанням window.scrollTo() 
+      //з параметром behavior: "smooth" забезпечує плавну прокрутку веб - сторінки 
+      //до заданої вертикальної позиції snapshot
+      window.scrollTo({  
+        top: snapshot,
+        behavior: "smooth"
+      })
+
+
     localStorage.setItem("todo", JSON.stringify(this.state.todo));
     }
     
     if (prevState.priority !== this.state.priority) {
       this.setState({ isOpen: true })
     }
+  }
+
+  // метод який додає по кліку масив з 15 елементами state.todo +15
+    onhandleAddMoreTodo = () => {
+      const newTodo = { ...this.state.todo[0] }
+      const todoList = Array(15).fill("").map((el) => ({ ...newTodo, id: v4() }));
+      this.setState((prev)=>({todo: [...prev.todo, ...todoList ]}))
   }
 
   // задача метода взяти todo і записати в стейт 
@@ -66,6 +83,8 @@ class TodoPage extends Component {
     return todo.filter((el)=> el.priority === priority)
   }
 
+
+
   render() {
 
     const filterdTodo = this.filterTodo()
@@ -79,6 +98,7 @@ class TodoPage extends Component {
         <ToDoList todo={filterdTodo}
           removeTodo={this.removeTodo}
           updateTodoStatus={this.updateTodoStatus} />
+        <button type="button"  onClick={this.onhandleAddMoreTodo}> Add More Todo</button>
       </>
     );
   }
