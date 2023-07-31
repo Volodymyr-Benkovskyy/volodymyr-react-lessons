@@ -1,5 +1,5 @@
-//@import-normalize;
-@import url('normalize.css');
+@import-normalize;
+
 body {
   margin: 0;
   overflow-x: hidden;
@@ -8,6 +8,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: rgb(237, 243, 230);
+  min-height: calc(100vh - 75.63px);
 }
 
 code {
