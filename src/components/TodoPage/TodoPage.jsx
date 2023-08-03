@@ -4,10 +4,13 @@ import ToDoForm from "../TodoForm/TodoForm";
 import ToDoList from "../TodoList/TodoList";
 import { todo as todoList } from "../../data/todo";
 import { v4 } from "uuid";
+import { useLocalStorage } from "../../hooks/useLocalStorage";
+
 
 
 const TodoPage = () => {
-  const [todo, setTodo] = useState(() => JSON.parse(localStorage.getItem("todo") || []))
+
+  const [todo, setTodo] = useLocalStorage("todo", []);
   const [priority, setPriority] = useState("all");
 
 
@@ -55,10 +58,9 @@ const TodoPage = () => {
   
    // ==== переносим даний  useEffect в стейт ===== ///
 
-  useEffect(() => {
-    console.log("useEffect--todo");
-    localStorage.setItem('todo', JSON.stringify(todo))
-  }, [todo]);
+  
+
+
 
   useEffect(() => {
     console.log("useEffect--priority");

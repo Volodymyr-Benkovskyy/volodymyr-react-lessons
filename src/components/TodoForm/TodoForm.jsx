@@ -1,6 +1,7 @@
 import {  useState } from "react";
 import s from "./TodoForm.module.scss";
 import { v4 as uuidv4 } from "uuid";
+import { useLocalStorage } from "../../hooks/useLocalStorage";
 
 const priorityOptions = {
   LOW: "low",
@@ -42,12 +43,20 @@ const TodoForm = ({ addTodo }) => {
    } */
   // другий метод роботи з формою 
   
-  const [Form, setForm] = useState({
+  // const [Form, setForm] = useState({
+  //   date: "2023-05-03",
+  //   descr: "",
+  //   priority: "",
+
+  // });
+ 
+  const [Form, setForm] = useLocalStorage("todoForm ", {
     date: "2023-05-03",
     descr: "",
     priority: "",
 
   });
+
 
   
   const handleChange = (e) => {
