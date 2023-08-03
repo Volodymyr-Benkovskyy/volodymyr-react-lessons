@@ -1,5 +1,11 @@
 # bc_50 - React
 
-## l-07.http
+## l-08.hooks-1
 
-api-docs - https://newsapi.org/docs/endpoints/everything
+### 1) useState
+
+### 2) useEffect
+
+### 3) useRef (ref/interval)
+
+### 4) useLocalStorage
