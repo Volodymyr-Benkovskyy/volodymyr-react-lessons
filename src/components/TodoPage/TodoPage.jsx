@@ -1,8 +1,7 @@
-import { useEffect, useState , useMemo} from "react";
+import { useEffect, useState , useMemo, useCallback } from "react";
 import PrioritySelect from "../PrioritySelect/PrioritySelect";
 import ToDoForm from "../TodoForm/TodoForm";
-import ToDoList from "../TodoList/TodoList";
-import { todo as todoList } from "../../data/todo";
+import {  ToDoList} from "../TodoList/TodoList";
 import { useLocalStorage } from "../../hooks/useLocalStorage";
 
 
@@ -14,10 +13,16 @@ const TodoPage = () => {
   const [isOpen, setIsOpen] = useState(false);
 
 
-   // добавляє  створену todo в колекцію
-  const addTodo = (todo) => {
-    setTodo(prevTodo => [...prevTodo, todo])
-  };
+ 
+  // переписуєм на useCallback щобне створювати новий реф при кожному рендері 
+  // const addTodo = (todo) => {
+  //   setTodo(prevTodo => [...prevTodo, todo])
+  // };
+
+   const addTodo = useCallback((newTodo) => { // повертає фуекцію і не створює новий ref
+    setTodo(prevTodo => [...prevTodo, newTodo])
+  }, [ setTodo]);
+
   
    // видаляє todo з колекції масива по id 
   const removeTodo = (id) => {
@@ -29,11 +34,6 @@ const TodoPage = () => {
   const updateTodoStatus = (id) => {
     setTodo(prev => prev.map((el) => (el.id !== id ? el : { ...el, isDone: !el.isDone })))
   }
- //  фільтру наш масив з todo по priority
-  //   const filterTodo = () => {
-  //   if (priority === "all") return todo;
-  //   return todo.filter((el) => el.priority === priority);
-  // };
 
 
   // const memoValue = isOpen(() => {
@@ -43,7 +43,7 @@ const TodoPage = () => {
 
 
 // фільтрація колекції масиву за допомошою ==>> useMemo 
-  const filterdTodo = useMemo(() => {
+  const filterdTodo =  useMemo(() => {
      if (priority === "all") return todo;
     return todo.filter((el) => el.priority === priority)
   }, [todo, priority])
@@ -78,10 +78,7 @@ const TodoPage = () => {
           todo={filterdTodo}
           removeTodo={removeTodo}
           updateTodoStatus={updateTodoStatus}
-        />
-        {/* <button type="button" onClick={this.handleAddMoreTodo}>
-          Add more todo
-        </button> */}
+        /> 
       </>
 
     );
@@ -89,3 +86,8 @@ const TodoPage = () => {
 
 export default TodoPage;
  
+// useCallback - це хук у бібліотеці React, який дозволяє вам оптимізувати 
+// продуктивність вашої програми, запобігаючи непотрібному перерендерингу функцій - колбеків.
+// Він використовується для мемоїзації(зберігання у пам'яті) функцій, 
+// забезпечуючи, що функція буде створена лише один раз під час створення компонента 
+// і не буде перестворюватися під час перерендерингу, якщо змінюються тільки залежності.

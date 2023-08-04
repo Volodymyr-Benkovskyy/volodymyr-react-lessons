@@ -1,4 +1,4 @@
-import {  useState } from "react";
+import {  useState, memo} from "react";
 import s from "./TodoForm.module.scss";
 import { v4 as uuidv4 } from "uuid";
 
@@ -19,12 +19,10 @@ const TodoForm = ({ addTodo }) => {
   });
 
 
-  
   const handleChange = (e) => {
     e.preventDefault();
     const { name, value } = e.target; //  подія на інпут полі Change 
     setForm(prevForm => ({ ...prevForm, [name]: value }))  //  записуємзгачення в змнну name
-
   }
 
   const handleSubmit = (e) => {
@@ -34,8 +32,6 @@ const TodoForm = ({ addTodo }) => {
     };
     addTodo(newTodo);
   }
-
-
     return (
     
       
@@ -114,15 +110,8 @@ const TodoForm = ({ addTodo }) => {
         </button>
       </form>
     )
-   
-
-
-
-
   };
-
-
-export default TodoForm;
+export default  memo(TodoForm) ;
  
 
 /* class ToDoFormClass extends PureComponent {
@@ -130,66 +119,8 @@ export default TodoForm;
     date: "2023-02-02",
     descr: "",
     priority: "",
-  };
+  }; */
 
  
 
-  handleChange = (e) => {
-    const { name, value, type, checked } = e.target;
-
-    if (type === "checkbox") {
-      this.setState((prevState) => ({
-        [name]: checked
-          ? [...prevState[name], value]
-          : prevState[name].filter((el) => el !== value),
-      }));
-      return;
-    }
-
-    this.setState({ [name]: value });
-  };
-
-  handleSubmit = (e) => {
-    e.preventDefault();
-    this.props.addTodo({ ...this.state, id: uuidv4(), isDone: false });
-  };
-
-  render() {
-    // console.log("Form render");
-
-   return(null)
-
-   
-  }
-} */
-
-
-
-
-
- // static getDerivedStateFromProps(props, state) {
-  //   // console.log("props :>> ", props);
-  //   // console.log("state :>> ", state);
-  //   console.log("Form getDerivedStateFromProps");
-  //   // const newState = { descr: "getDerivedStateFromProps" };
-  //   // return newState;
-  //   return null;
-  // }
-
-  // componentDidMount() {
-  //   console.log("Form CDM");
-  // }
-
-  // shouldComponentUpdate(newProps, newState) {
-  //   console.log("props :>> ", newProps);
-  //   console.log("newState :>> ", newState);
-  //   console.log("this.state :>> ", this.state);
-  //   if (
-  //     newState.date !== this.state.date ||
-  //     newState.descr !== this.state.descr ||
-  //     newState.priority !== this.state.priority
-  //   )
-  //     return true; // -> render true
-  //   // {} !== {}
-  //   return false; // -> render false
-  // }
+  
