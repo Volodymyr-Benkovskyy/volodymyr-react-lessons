@@ -1,8 +1,8 @@
 import {  useState } from "react";
 import s from "./TodoForm.module.scss";
 import { v4 as uuidv4 } from "uuid";
-import { useLocalStorage } from "../../hooks/useLocalStorage";
 
+//HOC ==>>  КОМПОНЕНТ ВИЩОГО ПОРЯДКУ 
 const priorityOptions = {
   LOW: "low",
   MEDIUM: "medium",
@@ -11,46 +11,7 @@ const priorityOptions = {
 
 
 const TodoForm = ({ addTodo }) => {
-  //  описуєм стейт перший опис для розуміння як працює... useState
-
-  // перший мето роботи з формою 
-  /*  const [date, setDate] = useState("2023-02-02");
-   const [descr, setDescr] = useState("");
-   const [priority, setPriority] = useState("");
- 
-   const handleChange = (e) => {
-     const { name, value } = e.target
-     switch (name) {
-       case "date":
-         setDate(value)
-         return;
-       case "descr":
-         setDescr(value)
-         return;
-       case "priority":
-         setPriority(value)
-         return;
-       default:
-         return;
-     };
-        const handleSubmit = (e) => {
-     e.preventDefault()
-     const newTodo = {
-       date, descr, priority, isDone: false, id: uuidv4()
-     };
-     addTodo(newTodo)
-   }; 
-   } */
-  // другий метод роботи з формою 
-  
-  // const [Form, setForm] = useState({
-  //   date: "2023-05-03",
-  //   descr: "",
-  //   priority: "",
-
-  // });
- 
-  const [Form, setForm] = useLocalStorage("todoForm ", {
+  const [Form, setForm] = useState("todoForm ", {
     date: "2023-05-03",
     descr: "",
     priority: "",
@@ -62,7 +23,7 @@ const TodoForm = ({ addTodo }) => {
   const handleChange = (e) => {
     e.preventDefault();
     const { name, value } = e.target; //  подія на інпут полі Change 
-    setForm(prevForm => ({ ...prevForm, [name]: value }))            //  записуємзгачення в змнну name
+    setForm(prevForm => ({ ...prevForm, [name]: value }))  //  записуємзгачення в змнну name
 
   }
 
