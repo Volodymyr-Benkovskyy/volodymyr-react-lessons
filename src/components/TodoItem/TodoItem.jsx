@@ -12,29 +12,34 @@ const TodoItem = ({
   updateTodoStatus,
 }) => {
   const [count, setCount] = useState(0);
+  
 
-  const intervalIdRef = useRef(null);
+
+  const intervalIdUseRef = useRef(null);
   const itemRef = useRef(null);
 
- /*  useEffect(() => {
-    intervalIdRef.current = setInterval(() => {
+  useEffect(() => {
+    intervalIdUseRef.current = setInterval(() => {
       setCount((prev) => prev + 1);
       console.log("count");
     }, 1000);
 
-    console.log("itemRef :>> ", itemRef);
+    //console.log("itemRef :>> ", itemRef);
 
     return () => {
-      clearInterval(intervalIdRef.current);
+      clearInterval(intervalIdUseRef.current);
     };
-  }, []); */
+  }, []);
 
   useEffect(() => {
-    console.log("intervalIdRef.current :>> ", intervalIdRef.current);
-    isDone === true && clearInterval(intervalIdRef.current);
+   // console.log("intervalIdRef.current :>> ", intervalIdUseRef.current);
+    isDone === true && clearInterval(intervalIdUseRef.current);
   }, [isDone]);
 
-  console.log("itemRef :>> ", itemRef);
+  //console.log("itemRef :>> ", itemRef);
+
+ // ref={itemRef} -- основна задача ref - це доступ до до дерева 
+
 
   return (
     <li ref={itemRef} key={id} className={s.toDoItem}>
@@ -62,3 +67,12 @@ const TodoItem = ({
 // const li = React.createElement("li", {ref: itemRef}) // create tmp -> create dom element
 
 export default TodoItem;
+
+
+ // useRef - це хук (hook) в бібліотеці React,
+ //який дозволяє створювати посилання на DOM - елемент або на інший об'єкт,
+ // який зберігається після зміни компонента без виклику перерендерингу.
+ 
+ //Додатково, useRef може використовуватися для зберігання стану, 
+ //який не впливає на рендеринг компонента, але може використовуватися для зберігання 
+ //та зміни даних в середині функціонального компонента.

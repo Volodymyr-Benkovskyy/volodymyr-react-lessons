@@ -58,10 +58,6 @@ const TodoPage = () => {
   
    // ==== переносим даний  useEffect в стейт ===== ///
 
-  
-
-
-
   useEffect(() => {
     console.log("useEffect--priority");
   }, [priority]);
