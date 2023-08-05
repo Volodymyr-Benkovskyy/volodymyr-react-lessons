@@ -1,17 +1,23 @@
 import PropTypes from "prop-types";
 import TodoItem from "../TodoItem/TodoItem";
 import s from "./TodoList.module.css";
+import { useIsOpen } from "../../context/IsOpenProvider";
 
-const ToDoList = ({ todo = [], removeTodo, updateTodoStatus, isOpen}) => {
+
+const ToDoList = ({ todo = [], removeTodo, updateTodoStatus }) => {
+
+     const isOpen = useIsOpen();
+  
   return (
     <ul className={s.container}>
+      {/* isOpen ==>> по умові тру і фолс  запускає рендер */}
       { isOpen && todo.map((todoItemProps) => (
-        <TodoItem
-          key={todoItemProps.id}S
-          {...todoItemProps}
-          removeTodo={removeTodo}
-          updateTodoStatus={updateTodoStatus}
-        />
+       <TodoItem
+  key={todoItemProps.id}
+  {...todoItemProps}
+  removeTodo={removeTodo}
+  updateTodoStatus={updateTodoStatus}
+/>
       ))}
     </ul>
   );
