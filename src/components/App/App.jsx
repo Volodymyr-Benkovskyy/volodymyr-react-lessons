@@ -1,11 +1,24 @@
  //import Counter from "../Counter/Counter";
+import { children, useState } from "react";
 import TodoPage from "../TodoPage/TodoPage";
+import Header from "../Header/Header";
+
+const IsOpenProvider = ({children}) => {
+  const [isOpen, setIsOpen] = useState(false)
+ return children
+}
 
 const App = () => {
+
+  const [isOpen, setIsOpen] = useState(false)
   return (
     <>
-      <TodoPage />
-     {/*  <Counter /> */}
+      <IsOpenProvider>
+        <Header isOpen={isOpen} setIsOpen={setIsOpen }  />
+        <TodoPage isOpen={isOpen} />
+       {/*  <Counter /> */}
+      </IsOpenProvider>
+     
     </>
   );
 };

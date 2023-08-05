@@ -21,7 +21,7 @@ const TodoItem = ({
   useEffect(() => {
     intervalIdUseRef.current = setInterval(() => {
       setCount((prev) => prev + 1);
-      console.log("count");
+     // console.log("count");
     }, 1000);
 
     //console.log("itemRef :>> ", itemRef);

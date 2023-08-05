@@ -1,18 +1,15 @@
 import { useEffect, useState , useMemo, useCallback } from "react";
 import PrioritySelect from "../PrioritySelect/PrioritySelect";
 import ToDoForm from "../TodoForm/TodoForm";
-import {  ToDoList} from "../TodoList/TodoList";
+import  ToDoList from "../TodoList/TodoList";
 import { useLocalStorage } from "../../hooks/useLocalStorage";
 
 
 
-const TodoPage = () => {
+const TodoPage = ({isOpen}) => {
 
   const [todo, setTodo] = useLocalStorage("todo", []);
   const [priority, setPriority] = useState("all");
-  const [isOpen, setIsOpen] = useState(false);
-
-
  
   // переписуєм на useCallback щобне створювати новий реф при кожному рендері 
   // const addTodo = (todo) => {
@@ -66,9 +63,7 @@ const TodoPage = () => {
 
     return (
       <>
-        <button onClick={() => setIsOpen((prev) => !prev)}>
-          Click - {`${isOpen}`}
-        </button>
+    
         <ToDoForm addTodo={addTodo} />
         <PrioritySelect
            priority={priority}
@@ -78,6 +73,7 @@ const TodoPage = () => {
           todo={filterdTodo}
           removeTodo={removeTodo}
           updateTodoStatus={updateTodoStatus}
+          isOpen={isOpen}
         /> 
       </>
 

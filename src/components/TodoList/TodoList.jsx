@@ -2,12 +2,12 @@ import PropTypes from "prop-types";
 import TodoItem from "../TodoItem/TodoItem";
 import s from "./TodoList.module.css";
 
-const TodoList = ({ todo = [], removeTodo, updateTodoStatus }) => {
+const ToDoList = ({ todo = [], removeTodo, updateTodoStatus, isOpen}) => {
   return (
     <ul className={s.container}>
-      {todo.map((todoItemProps) => (
+      { isOpen && todo.map((todoItemProps) => (
         <TodoItem
-          key={todoItemProps.id}
+          key={todoItemProps.id}S
           {...todoItemProps}
           removeTodo={removeTodo}
           updateTodoStatus={updateTodoStatus}
@@ -17,7 +17,7 @@ const TodoList = ({ todo = [], removeTodo, updateTodoStatus }) => {
   );
 };
 
-TodoList.propTypes = {
+ToDoList.propTypes = {
   todo: PropTypes.arrayOf(
     PropTypes.shape({
       date: PropTypes.string.isRequired,
@@ -30,7 +30,7 @@ TodoList.propTypes = {
   ),
 };
 
-export default TodoList;
+export default ToDoList;
 
 /* const props = {};
 
