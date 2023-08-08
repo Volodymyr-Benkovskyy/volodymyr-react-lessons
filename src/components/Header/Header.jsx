@@ -1,8 +1,8 @@
-import { useIsOpen, useSetIsOpen } from "../../context/IsOpenProvider";
 
-import { Link, NavLink } from "react-router-dom";
 
-import clsx from "clsx";
+import { /* Link, */ NavLink } from "react-router-dom";
+
+//import clsx from "clsx";
 import s from "./Header.module.css";
 import styled from "styled-components";
 
@@ -28,28 +28,35 @@ const Header = () => {
       <nav className={s.nav}>
         <ul className={s.list}>
           
-          <li className={s.item}>   
-            <NavLink to={'/'} className={({ isActive }) => clsx(s.link, isActive && s.active)}>Home
-            
+          <li className={s.item}>              
+            {/* <NavLink to={'/'}
+              className={({ isActive }) => clsx(s.link, isActive && s.active)}>
+              Home
+            </NavLink> */}
+            <StyledNavLink to={'/'}>Home</StyledNavLink>
+          </li>
+
+          <li className={s.item}>
+          {/*   <NavLink to={"/counter"}
+              className={({ isActive }) => clsx(s.link, isActive && s.active)}>
+              Counter
             </NavLink>
-           
+          */}
+            <StyledNavLink to={'/counter'}>Counter</StyledNavLink> 
           </li>
 
           <li className={s.item}>
-
-            <NavLink to={"/counter"}  className={({isActive})=> clsx(s.link, isActive && s.active)}> Counter</NavLink>
-         
-          </li>
-
-          <li className={s.item}>
-
-            <NavLink to={"/todo"} className={ ({isActive})=> clsx(s.link, isActive && s.active)}>Todo</NavLink>
+        {/*     <NavLink to={"/todo"}
+              className={({ isActive }) => clsx(s.link, isActive && s.active)}>
+              Todo
+            </NavLink> */}
         
+            <StyledNavLink to={'/todo'}>Todo</StyledNavLink>           
           </li>
 
-        {/*   <li className={s.item}>
+          <li className={s.item}>
             <StyledNavLink to={"/news"}>News</StyledNavLink>
-          </li> */}
+          </li>
         </ul>
       </nav>
     </header>

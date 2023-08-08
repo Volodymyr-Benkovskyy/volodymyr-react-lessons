@@ -56,7 +56,7 @@ const TodoPage = ({isOpen}) => {
    // ==== переносим даний  useEffect в стейт ===== ///
 
   useEffect(() => {
-    console.log("useEffect--priority");
+   // console.log("useEffect--priority");
   }, [priority]);
   
   

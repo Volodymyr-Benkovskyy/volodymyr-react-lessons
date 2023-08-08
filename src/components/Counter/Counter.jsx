@@ -7,17 +7,17 @@ import s from "./Counter.module.scss";
 //  }
 
 const Counter = () => {
-  const [number, setNumber] = useState(125); 
-  const [string, setString] = useState("hello");
-  const [array, setArray] = useState([0]);
+ // const [number, setNumber] = useState(125); 
+ // const [string, setString] = useState("hello");
+ // const [array, setArray] = useState([0]);
 
 
   const [count, setCount] = useState(0);
 
 
-  console.log('number :>> ', number);
-  console.log('string :>> ', string);
-  console.log('array :>> ', array);
+  //console.log('number :>> ', number);
+  //console.log('string :>> ', string);
+  //console.log('array :>> ', array);
   
     
  return (

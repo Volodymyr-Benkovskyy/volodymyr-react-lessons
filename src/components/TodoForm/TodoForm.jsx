@@ -33,7 +33,7 @@ const TodoForm = ({ addTodo }) => {
     addTodo(newTodo);
   };
 
-  console.log("TdoForm Render");
+  console.log("TodoForm Render");
 
   return (
     <form className={s.form} onSubmit={handleSubmit}>
