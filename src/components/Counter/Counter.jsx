@@ -23,15 +23,6 @@ const Counter = () => {
  return (
     <div className={s.container}>
       <h1 className={s.title}>Counter</h1>
-     <button className={s.btn}
-       onClick={() => {
-         setNumber(500)
-         setString("React")
-       }}
-    
-      >
-        Click
-      </button>
       <p className={s.count}>{count}</p>
       <div className={s.btnsWrapper}>
 

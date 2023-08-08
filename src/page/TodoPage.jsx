@@ -1,8 +1,8 @@
 import { useEffect, useState , useMemo, useCallback } from "react";
-import PrioritySelect from "../PrioritySelect/PrioritySelect";
-import ToDoForm from "../TodoForm/TodoForm";
-import  ToDoList from "../TodoList/TodoList";
-import { useLocalStorage } from "../../hooks/useLocalStorage";
+import PrioritySelect from "../components/PrioritySelect/PrioritySelect";
+import ToDoForm from "../components/TodoForm/TodoForm";
+import  ToDoList from "../components/TodoList/TodoList";
+import { useLocalStorage } from "../hooks/useLocalStorage";
 
 
 
