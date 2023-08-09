@@ -6,6 +6,9 @@ import { /* Link, */ NavLink } from "react-router-dom";
 import s from "./Header.module.css";
 import styled from "styled-components";
 
+
+
+
 const StyledNavLink = styled(NavLink)`
   display: flex;
   align-items: center;
@@ -21,6 +24,9 @@ const StyledNavLink = styled(NavLink)`
     color: orange;
   }
 `;
+
+
+
 
 const Header = () => {
   return (
@@ -77,10 +83,14 @@ export default Header;
 //     const isOpen = useIsOpen();
 //     const setIsOpen = useSetIsOpen();
 //     return (<header>
-//         <h1>header</h1>       
+//         <h1>header</h1>
 //                          {/* переключає по умові на тру і фолс */}
-//             <button onClick={() => setIsOpen((prev) => !prev)}> 
+//             <button onClick={() => setIsOpen((prev) => !prev)}>
 //           Click - {`${isOpen}`}
 //         </button>
 //     </header>)
 // }
+
+// creation and application components link Navlink
+// Routes(path, inserted routes)
+// Route - index, Outlet

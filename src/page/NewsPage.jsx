@@ -3,34 +3,32 @@ import { Link, Outlet } from "react-router-dom";
 
 const NewsPage = () => {
    
-    return <>
-        
-        <h1>NewsPage</h1>
-         <Outlet />
-        
+    return <>   
+        <h1>NewsPage</h1>  
         <ul>
             <li>
-                <Link to="/news/pl">
+                <Link to="pl">
                     PL
                 </Link>
             </li>
             <li>
-                <Link to="/news/ua">
+                <Link to="ua">
                     UA
                 </Link>
             </li>
             <li>
-                <Link to="/news/us">
+                <Link to="us">
                     US
                 </Link>
             </li>
             <li>
-                <Link to="/news/fr">
-                    fr
+                <Link to="fr">
+                    FR
                 </Link>
 
             </li>
         </ul>
+         <Outlet />
        
     </>
     
