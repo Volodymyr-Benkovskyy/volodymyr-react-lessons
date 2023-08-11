@@ -1,4 +1,4 @@
-import { memo, useState } from "react";
+import { memo,  useState } from "react";
 
 import s from "./TodoForm.module.scss";
 import { v4 as uuidv4 } from "uuid";
@@ -32,8 +32,6 @@ const TodoForm = ({ addTodo }) => {
     };
     addTodo(newTodo);
   };
-
-  console.log("TodoForm Render");
 
   return (
     <form className={s.form} onSubmit={handleSubmit}>
@@ -109,5 +107,4 @@ const TodoForm = ({ addTodo }) => {
   );
 };
 
-// export default TodoForm;
 export default memo(TodoForm); 

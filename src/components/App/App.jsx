@@ -1,13 +1,12 @@
- //import Counter from "../Counter/Counter";
- import { Outlet, Route, Routes} from "react-router-dom";
-import TodoPage from "../../page/TodoPage";
-import CounterPage from "../../page/CounterPage";
-import HomePage from "../../page/HomePage";
-//import TodoPage from "../TodoPage/TodoPage";
-import Header from "../Header/Header";
-import NewsPage from "../../page/NewsPage";
+import { Navigate, Outlet, Route, Routes } from "react-router-dom";
+
+import CounterPage from "../../pages/CounterPage";
 import CountryNews from "../CountryNews/CountryNews";
-//import { IsOpenProvider } from "../../context/IsOpenProvider";
+import Header from "../Header/Header";
+import HomePage from "../../pages/HomePage";
+import NewsPage from "../../pages/NewsPage";
+import TodoPage from "../../pages/TodoPage";
+import SearchNewsPage from "../../pages/SearchNewsPage";
 
 const MainLayout = () => {
   return (
@@ -15,46 +14,42 @@ const MainLayout = () => {
       <Header />
       <Outlet />
     </>
-
   );
-  
-}
-
-
-
+};
 
 const App = () => {
   return (
     <>
-     
       <Routes>
-        <Route path="/" element={< MainLayout/>}> 
-           <Route index element={< HomePage />} />
-           <Route path="/todo" element={<TodoPage /> } />
-           <Route path='/counter' element={<CounterPage />} />
-          <Route path='/news' element={<NewsPage />} >  
-           <Route path=':country' element={<CountryNews />} />     
-         </Route>
+        <Route path="/" element={<MainLayout />}>
+          <Route index element={<HomePage />} />
+          <Route path="todo" element={<TodoPage />} />
+          <Route path="counter" element={<CounterPage />} />
+          <Route path="news" element={<NewsPage />}>
+            <Route path=":country" element={<CountryNews />} />
+          </Route>
+          <Route path="search-news" element={< SearchNewsPage/>} />
+
         </Route>
+
+        <Route path="*" element={<Navigate to="/" />} />
       </Routes>
-     
     </>
   );
 };
 
 export default App;
 
+// const usLang = {
+//   mainTitle: "Hello",
+// };
 
-  // ff8bb18441504260adbe0ecc126652ff -- api_key 
+// const uaLang = {
+//   mainTitle: "Привіт",
+// };
 
-    // <IsOpenProvider>
-    //     <Header  />
-    //     <TodoPage  />
-    //    {/*  <Counter /> */}
-    //   </IsOpenProvider>
-     
-        // методи для розуміння Route
-    //   <Route path='pl' element={<h2>News List PL</h2>} /> 
-    //   <Route path='ua' element={<h2>News List UA</h2>} /> 
-    //    <Route path='us' element={<h2>News List US</h2>} /> 
-    //    <Route path='fr' element={<h2>News List FR</h2>} /> 
+// // ua | us
+// const C = ({ lang }) => {
+//   const title = lang === "us" ? usLang.mainTitle : uaLang.mainTitle;
+//   return <h1>{title}</h1>;
+// };

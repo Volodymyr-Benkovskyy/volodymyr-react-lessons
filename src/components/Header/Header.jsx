@@ -1,68 +1,53 @@
+import { NavLink, useLocation } from "react-router-dom";
 
+import clsx from "clsx";
+import s from "./Header.module.scss";
 
-import { /* Link, */ NavLink } from "react-router-dom";
-
-//import clsx from "clsx";
-import s from "./Header.module.css";
-import styled from "styled-components";
-
-
-
-
-const StyledNavLink = styled(NavLink)`
-  display: flex;
-  align-items: center;
-  padding: 8px 12px;
-  text-decoration: none;
-  font-size: 20px;
-  color: #fff;
-  border: 1px solid rgb(232, 235, 232);
-  border-radius: 8px;
-
-  &.active {
-    border-color: red;
-    color: orange;
-  }
-`;
-
-
-
+const getActiveStyle = ({ isActive }) => clsx(s.link, isActive && s.active);
 
 const Header = () => {
+
+  const location = useLocation();
+
   return (
     <header className={s.header}>
       <nav className={s.nav}>
         <ul className={s.list}>
-          
-          <li className={s.item}>              
-            {/* <NavLink to={'/'}
-              className={({ isActive }) => clsx(s.link, isActive && s.active)}>
-              Home
-            </NavLink> */}
-            <StyledNavLink to={'/'}>Home</StyledNavLink>
-          </li>
-
           <li className={s.item}>
-          {/*   <NavLink to={"/counter"}
-              className={({ isActive }) => clsx(s.link, isActive && s.active)}>
+            <NavLink to={"/"} className={getActiveStyle}>
+              Home
+            </NavLink>
+          </li>
+          <li className={s.item}>
+            <NavLink to="/counter" className={getActiveStyle}>
               Counter
             </NavLink>
-          */}
-            <StyledNavLink to={'/counter'}>Counter</StyledNavLink> 
           </li>
-
           <li className={s.item}>
-        {/*     <NavLink to={"/todo"}
-              className={({ isActive }) => clsx(s.link, isActive && s.active)}>
+            <NavLink to="/todo" className={getActiveStyle}>
               Todo
-            </NavLink> */}
-        
-            <StyledNavLink to={'/todo'}>Todo</StyledNavLink>           
+            </NavLink>
+          </li>
+          <li className={s.item}>
+            <NavLink
+              to="/news"
+              state={location}
+              className={getActiveStyle}
+            >
+              News
+            </NavLink>
           </li>
 
-          <li className={s.item}>
-            <StyledNavLink to={"/news"}>News</StyledNavLink>
+            <li className={s.item}>
+            <NavLink
+              to="/search-news"
+              state={location}
+              className={getActiveStyle}
+            >
+            SearchNewsPage
+            </NavLink>
           </li>
+       
         </ul>
       </nav>
     </header>
@@ -70,27 +55,3 @@ const Header = () => {
 };
 
 export default Header;
-
-// {} {} {}
-
-
-
-
-
-
-
-// const Header = () => {
-//     const isOpen = useIsOpen();
-//     const setIsOpen = useSetIsOpen();
-//     return (<header>
-//         <h1>header</h1>
-//                          {/* переключає по умові на тру і фолс */}
-//             <button onClick={() => setIsOpen((prev) => !prev)}>
-//           Click - {`${isOpen}`}
-//         </button>
-//     </header>)
-// }
-
-// creation and application components link Navlink
-// Routes(path, inserted routes)
-// Route - index, Outlet
