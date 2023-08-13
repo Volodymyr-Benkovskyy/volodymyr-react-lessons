@@ -1,26 +1,36 @@
-import { Navigate, Outlet, Route, Routes } from "react-router-dom";
 
-import CounterPage from "../../pages/CounterPage";
-import CountryNews from "../CountryNews/CountryNews";
-import Header from "../Header/Header";
-import HomePage from "../../pages/HomePage";
-import NewsPage from "../../pages/NewsPage";
-import TodoPage from "../../pages/TodoPage";
-import SearchNewsPage from "../../pages/SearchNewsPage";
+import { Navigate,  Route, Routes } from "react-router-dom";
+import MainLayout from "../MainLayout/MainLayout";
+import { lazy } from "react";
 
-const MainLayout = () => {
-  return (
-    <>
-      <Header />
-      <Outlet />
-    </>
-  );
-};
+
+ //import CounterPage from "../../pages/CounterPage";
+//import CountryNews from "../CountryNews/CountryNews";
+
+//import HomePage from "../../pages/HomePage";
+//import NewsPage from "../../pages/NewsPage";
+//import TodoPage from "../../pages/TodoPage";
+//import SearchNewsPage from "../../pages/SearchNewsPage"; 
+
+const HomePage = lazy(() => import("../../pages/HomePage"));
+const NewsPage = lazy(() => import("../../pages/NewsPage"));
+const SearchNewsPage = lazy(() => import("../../pages/SearchNewsPage"));
+const TodoPage = lazy(() => import("../../pages/TodoPage"));
+
+
+const CounterPage = lazy(() => import("../../pages/CounterPage"));
+const CountryNews = lazy(() => import("../CountryNews/CountryNews"));
+
+
+
 
 const App = () => {
   return (
     <>
-      <Routes>
+      
+      
+      
+           <Routes>
         <Route path="/" element={<MainLayout />}>
           <Route index element={<HomePage />} />
           <Route path="todo" element={<TodoPage />} />
@@ -34,6 +44,11 @@ const App = () => {
 
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
+    
+      
+
+
+   
     </>
   );
 };
