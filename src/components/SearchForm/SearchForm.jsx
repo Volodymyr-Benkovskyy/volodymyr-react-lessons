@@ -11,7 +11,7 @@ import {  /* useNavigate, */ useSearchParams} from "react-router-dom"
       
      const handleSubmit = (e) => {
     e.preventDefault();
-         setSearch({ query: input  });
+         setSearch({ query: input, page: 1  });
          
   };
      

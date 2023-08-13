@@ -18,13 +18,13 @@ export const getCountryNewsApi = (country) => {
 
 // https://newsapi.org/v2/everything?q=bitcoin&apiKey=ff8bb18441504260adbe0ecc126652ff
 
-export const getSearchNewsApi = (query) => {
+export const getSearchNewsApi = (query, page) => {
   return axios
     .get("/everything", {
       params: {
         q: query,
-        page: 1,
-        pageSize: 10,
+        page,
+        pageSize: 5,
         apiKey: API_KEY,
       },
     })
