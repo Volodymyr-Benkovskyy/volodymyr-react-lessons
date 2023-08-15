@@ -38,7 +38,7 @@ const App = () => {
           <Route path="news" element={<NewsPage />}>
             <Route path=":country" element={<CountryNews />} />
           </Route>
-          <Route path="search-news" element={< SearchNewsPage/>} />
+           <Route path="search-news" element={< SearchNewsPage/>} /> 
 
         </Route>
 

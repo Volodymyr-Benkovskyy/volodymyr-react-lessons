@@ -1,6 +1,7 @@
 import { createStore, combineReducers } from "redux";
 import { devToolsEnhancer } from "redux-devtools-extension";
 import counterReducer from "./Counter/counterReducer";
+import todoReducer from "./Todo/todoReducer";
 
 // підключення девтулзів редюкс
 const enhancer = devToolsEnhancer();
@@ -34,6 +35,7 @@ const bReducer = combineReducers({
 // загальний редюсер
 const rootReducer = combineReducers({
   count: counterReducer,
+  todo: todoReducer,
   a: aReducer,
   b: bReducer,
   c: cReducer,

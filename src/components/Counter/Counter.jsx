@@ -1,40 +1,48 @@
-//import { useState } from "react";
+
+//import { type } from "@testing-library/user-event/dist/type";
+import {
+  counterDecrementAction,
+  counterIncrementAction,
+  resetCounterAction
+} from "../redux/Counter/CounterActions";
 import s from "./Counter.module.scss";
 import { useDispatch, useSelector } from "react-redux";
 
 
 
-
-
-
 const Counter = () => {
- // const [count, setCount] = useState(0);
+  
+  //  - це спосіб отримати доступ до функції dispatch
+  const dispatch = useDispatch(); 
 
-  const dispatch = useDispatch(); //  - це спосіб отримати доступ до функції dispatch
+ 
+  // отримуєм значення count з стейту за допомогою  ==>> useSelector
+  const count = useSelector((state) => state.count)
+  
 
-  const count = useSelector((state)=> state.count)
   return (
     <div className={s.container}>
       <h1 className={s.title}>Counter</h1>
-      <button onClick={() => dispatch({type:"change/name"})}>Change Username</button>
       <p className={s.count}>{count}</p>
       <div className={s.btnsWrapper}>
+        
         <button
-          //onClick={() => setCount((prevCount) => prevCount - 10)}
+         // onClick={() => dispatch({ type:"counter/decrement", payload: 25})}
+          onClick={() => dispatch(counterDecrementAction(25))}
           className={s.btn}
           type="button"
         >
           -
         </button>
         <button className={s.btn}
-         // onClick={() => setCount(0)}
+          onClick={() => dispatch(resetCounterAction())}
           type="button">
           0
         </button>
         <button
           className={s.btn}
           type="button"
-          //onClick={() => setCount((prevCount) => prevCount + 25)}
+          onClick={() => dispatch(counterIncrementAction(15))}
         >
           +
         </button>

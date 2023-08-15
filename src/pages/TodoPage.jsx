@@ -29,7 +29,7 @@ const useTodo = () => {
 };
 
 const TodoPage = ({ isOpen }) => {
-  const { todo, addTodo, removeTodo, updateTodoStatus } = useTodo();
+  const { todo, addTodo } = useTodo();
   const [priority, setPriority] = useState("all");
 
   const changePriority = (e) => {
@@ -43,13 +43,10 @@ const TodoPage = ({ isOpen }) => {
 
   return (
     <>
-      <ToDoForm addTodo={addTodo} />
+      <ToDoForm />
       <PrioritySelect priority={priority} changePriority={changePriority} />
       <ToDoList
-        todo={filteredTodo}
-        removeTodo={removeTodo}
-        updateTodoStatus={updateTodoStatus}
-        isOpen={isOpen}
+  
       />
     </>
   );

@@ -2,6 +2,8 @@ import { memo,  useState } from "react";
 
 import s from "./TodoForm.module.scss";
 import { v4 as uuidv4 } from "uuid";
+import { useDispatch } from "react-redux";
+import { addTodoAction } from "../redux/Todo/todoAction";
 
 // HOC
 
@@ -11,7 +13,10 @@ const priorityOptions = {
   HIGH: "high",
 };
 
-const TodoForm = ({ addTodo }) => {
+const TodoForm = () => {
+// функція яка відправляє екшен в редюсєр  dispatch
+  const dispatch = useDispatch() 
+
   const [form, setForm] = useState({
     date: "2023-05-03",
     descr: "",
@@ -30,7 +35,7 @@ const TodoForm = ({ addTodo }) => {
       isDone: false,
       id: uuidv4(),
     };
-    addTodo(newTodo);
+    dispatch(addTodoAction(newTodo));
   };
 
   return (
