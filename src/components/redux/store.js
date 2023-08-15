@@ -1,5 +1,6 @@
 import { createStore, combineReducers } from "redux";
 import { devToolsEnhancer } from "redux-devtools-extension";
+import counterReducer from "./Counter/counterReducer";
 
 // підключення девтулзів редюкс
 const enhancer = devToolsEnhancer();
@@ -18,15 +19,21 @@ const cReducer = (state = true) => state;
 const arrReducer = (state = [], action) => {
   return [...state, action.payload];
 };
-const userNameReducer = (state = "bob", action) => state;
+const userNameReducer = (state = "bob", action) => {
+  if (action.type === "change/name") {
+    return "rick";
+  }
+  return state;
+};
 
 const bReducer = combineReducers({
   arr: arrReducer,
   userName: userNameReducer,
 });
 
+// загальний редюсер
 const rootReducer = combineReducers({
-  // загальний редюсер
+  count: counterReducer,
   a: aReducer,
   b: bReducer,
   c: cReducer,
