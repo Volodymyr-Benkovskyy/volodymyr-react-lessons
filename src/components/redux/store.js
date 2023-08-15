@@ -1,9 +1,40 @@
-import { createStore } from "redux";
-import { devToolsEnhancer } from "redux- ";
+import { createStore, combineReducers } from "redux";
+import { devToolsEnhancer } from "redux-devtools-extension";
 
+// підключення девтулзів редюкс
 const enhancer = devToolsEnhancer();
-const reducer = (state = { a: 5 }, action) => {
-  return state;
-};
 
-export const store = createStore(reducer, enhancer);
+// const reducer = (
+//   state = { a: 5, b: { arr: [], userName: "bob" }, c: true },
+//   action
+// ) => {
+//   return state;
+// };
+
+const aReducer = (state = 5, action) => state;
+//const bReducer = (state = { arr: [], userName: "bob" }, action) => state;
+const cReducer = (state = true) => state;
+
+const arrReducer = (state = [], action) => {
+  return [...state, action.payload];
+};
+const userNameReducer = (state = "bob", action) => state;
+
+const bReducer = combineReducers({
+  arr: arrReducer,
+  userName: userNameReducer,
+});
+
+const rootReducer = combineReducers({
+  // загальний редюсер
+  a: aReducer,
+  b: bReducer,
+  c: cReducer,
+});
+
+export const store = createStore(rootReducer, enhancer);
+
+// redux-devtools-extension --> встановлення бібліотеки
+
+//  combineReducers ==>> Метод  є функцією у бібліотеці Redux
+//                      для об'єднання різних редюсерів в один кореневий редюсер.
