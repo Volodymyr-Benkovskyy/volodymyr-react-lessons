@@ -11,7 +11,6 @@ const TodoItem = ({
   date,
   priority,
   isDone,
- 
 }) => {
   const [count, setCount] = useState(0);
   const dispatch = useDispatch()
