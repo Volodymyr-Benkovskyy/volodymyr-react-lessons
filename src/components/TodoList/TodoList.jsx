@@ -1,16 +1,19 @@
 import PropTypes from "prop-types";
 import TodoItem from "../TodoItem/TodoItem";
 import s from "./TodoList.module.scss";
+import { useSelector } from "react-redux";
 
-const TodoList = ({ todo = [], removeTodo, updateTodoStatus }) => {
+const TodoList = () => {
+  
+  const todo = useSelector((state) => state.todo)
+  
   return (
     <ul className={s.container}>
       {todo.map((todoItemProps) => (
         <TodoItem
           key={todoItemProps.id}
           {...todoItemProps}
-          removeTodo={removeTodo}
-          updateTodoStatus={updateTodoStatus}
+        
         />
       ))}
     </ul>
