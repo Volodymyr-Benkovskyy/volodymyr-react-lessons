@@ -1,49 +1,33 @@
-import { createStore, combineReducers } from "redux";
-import { devToolsEnhancer } from "redux-devtools-extension";
+//import { createStore, combineReducers } from "redux";
+import { combineReducers, configureStore } from "@reduxjs/toolkit";
+//import { devToolsEnhancer } from "redux-devtools-extension";
 import counterReducer from "./Counter/counterReducer";
 import todoReducer from "./Todo/todoReducer";
 
-// підключення девтулзів редюкс
-const enhancer = devToolsEnhancer();
-
-// const reducer = (
-//   state = { a: 5, b: { arr: [], userName: "bob" }, c: true },
-//   action
-// ) => {
-//   return state;
-// };
-
-const aReducer = (state = 5, action) => state;
-//const bReducer = (state = { arr: [], userName: "bob" }, action) => state;
-const cReducer = (state = true) => state;
-
-const arrReducer = (state = [], action) => {
-  return [...state, action.payload];
-};
-const userNameReducer = (state = "bob", action) => {
-  if (action.type === "change/name") {
-    return "rick";
-  }
-  return state;
-};
-
-const bReducer = combineReducers({
-  arr: arrReducer,
-  userName: userNameReducer,
-});
+//const enhancer = devToolsEnhancer();
 
 // загальний редюсер
 const rootReducer = combineReducers({
   count: counterReducer,
   todo: todoReducer,
-  a: aReducer,
-  b: bReducer,
-  c: cReducer,
 });
 
-export const store = createStore(rootReducer, enhancer);
+// export const store = createStore(rootReducer, enhancer);
 
-// redux-devtools-extension --> встановлення бібліотеки
+// export const store = configureStore({
+//   reducer: rootReducer,
+// });
 
-//  combineReducers ==>> Метод  є функцією у бібліотеці Redux
-//                      для об'єднання різних редюсерів в один кореневий редюсер.
+//створ. основного редюсера без rootReducer
+export const store = configureStore({
+  reducer: {
+    count: counterReducer,
+    todo: todoReducer,
+  },
+});
+
+// npm install @reduxjs/toolkit бібліотека
+// configureStore ===>>> метод для створення store біблотеки @reduxjs/toolkit
+// configureStore ===>  під капотом підключає redux-devtools-extension"
+
+//git commit -m "installation @reduxjs/toolkit, application of the method configureStore
