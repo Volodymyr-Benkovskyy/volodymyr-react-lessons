@@ -1,9 +1,6 @@
-//import { createStore, combineReducers } from "redux";
-import { combineReducers, configureStore } from "@reduxjs/toolkit";
-
-//import { devToolsEnhancer } from "redux-devtools-extension";
-import counterReducer from "./Counter/counterReducer";
-import todoReducer from "./Todo/todoReducer";
+import { configureStore } from "@reduxjs/toolkit";
+import counterReducer from "./Counter/counterSlice";
+import todoReducer from "./Todo/todoSlice";
 
 //створ. основного редюсера без rootReducer
 export const store = configureStore({

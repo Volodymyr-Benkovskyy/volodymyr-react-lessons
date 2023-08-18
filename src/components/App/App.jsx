@@ -73,3 +73,5 @@ export default App;
 //creation  Action counterDecrementAction, resetCounterAction, counterIncrementAction  and counterReducer
 
 // creation and implementation of the method Slice
+
+// method practice todoSlice , createSlice 

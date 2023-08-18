@@ -2,8 +2,9 @@ import React, { useEffect, useRef, useState } from "react";
 
 import s from "./TodoItem.module.scss";
 import { useDispatch } from "react-redux";
-import { removeTodo } from "../redux/Todo/todoAction";
-import { updateTodoStatus} from "../redux/Todo/todoAction";
+//import { removeTodo } from "../redux/Todo/todoAction";
+//import { updateTodoStatus} from "../redux/Todo/todoAction";
+import { remove, updateStatus } from "../redux/Todo/todoSlice";  /* method Slice */
 
 const TodoItem = ({
   descr,
@@ -44,11 +45,15 @@ const TodoItem = ({
           type="checkbox"
           name="status"
           checked={isDone}
-          onChange={(e) => dispatch(updateTodoStatus(id))}
+         // onChange={(e) => dispatch(updateTodoStatus(id))}
+          onChange={(e) => dispatch(updateStatus(id))} 
+          
         />
         Done
       </label>
-      <button className={s.todoBtn} onClick={() => dispatch( removeTodo(id))}>
+      <button className={s.todoBtn}
+        onClick={() => dispatch(remove(id))}>
+      
         Remove
       </button>
     </li>

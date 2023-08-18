@@ -1,11 +1,15 @@
 import { memo,  useState } from "react";
 
 import s from "./TodoForm.module.scss";
-import { v4 as uuidv4 } from "uuid";
+
 import { useDispatch } from "react-redux";
-import { addTodoAction } from "../redux/Todo/todoAction";
+import { add } from "../redux/Todo/todoSlice";
+//import { addTodoAction } from "../redux/Todo/todoAction";
+
 
 // HOC
+
+console.log('add("Hello!") :>> ', add("Hello!"));
 
 const priorityOptions = {
   LOW: "low",
@@ -27,15 +31,11 @@ const TodoForm = () => {
     const { name, value } = e.target;
     setForm((prevForm) => ({ ...prevForm, [name]: value }));
   };
-
+ 
+  // ==== >>>>>  method Slice //
   const handleSubmit = (e) => {
     e.preventDefault();
-    const newTodo = {
-      ...form,
-      isDone: false,
-      id: uuidv4(),
-    };
-    dispatch(addTodoAction(newTodo));
+     dispatch(add(form)); 
   };
 
   return (
@@ -113,3 +113,19 @@ const TodoForm = () => {
 };
 
 export default memo(TodoForm); 
+
+
+//  до використання createSlice  handleSubmit
+
+// логіка винесена в todoSlice тобто в екшен і редюсер
+
+//  const handleSubmit = (e) => {
+//     e.preventDefault();
+//     const newTodo = {
+//       ...form,
+//       isDone: false,
+//       id: uuidv4(),
+//     };
+//     dispatch(addTodoAction(newTodo)); 
+//     dispatch(add(form)); // method createSlice
+//   };

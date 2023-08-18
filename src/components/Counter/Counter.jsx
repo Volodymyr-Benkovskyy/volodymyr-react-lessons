@@ -2,10 +2,10 @@
 //import { type } from "@testing-library/user-event/dist/type";
 import {
  // counterDecrementAction,
-  counterIncrementAction,
-  resetCounterAction
+ // counterIncrementAction,
+ // resetCounterAction
 } from "../redux/Counter/CounterActions";
-import { decrement, increment,reset } from "../redux/counterSlice";
+import { decrement, increment,reset } from "../redux/Counter/counterSlice";
 import s from "./Counter.module.scss";
 import { useDispatch, useSelector } from "react-redux";
 
