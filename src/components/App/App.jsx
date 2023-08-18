@@ -68,3 +68,8 @@ export default App;
 //   const title = lang === "us" ? usLang.mainTitle : uaLang.mainTitle;
 //   return <h1>{title}</h1>;
 // };
+
+
+//creation  Action counterDecrementAction, resetCounterAction, counterIncrementAction  and counterReducer
+
+// creation and implementation of the method Slice

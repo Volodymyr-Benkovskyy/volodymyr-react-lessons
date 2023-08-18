@@ -36,5 +36,3 @@ export const counterIncrementAction = createAction("counter/increment");
 //     payload: value,
 //   };
 // };
-
-// creation  Action counterDecrementAction, resetCounterAction, counterIncrementAction  and counterReducer

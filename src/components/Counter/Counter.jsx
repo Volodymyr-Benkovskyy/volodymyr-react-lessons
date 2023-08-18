@@ -1,10 +1,11 @@
 
 //import { type } from "@testing-library/user-event/dist/type";
 import {
-  counterDecrementAction,
+ // counterDecrementAction,
   counterIncrementAction,
   resetCounterAction
 } from "../redux/Counter/CounterActions";
+import { decrement, increment,reset } from "../redux/counterSlice";
 import s from "./Counter.module.scss";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -28,21 +29,23 @@ const Counter = () => {
         
         <button
          // onClick={() => dispatch({ type:"counter/decrement", payload: 25})}
-          onClick={() => dispatch(counterDecrementAction(25))}
+         // onClick={() => dispatch(counterDecrementAction(25))}
+           onClick={() => dispatch(decrement(25))} //  method slice
           className={s.btn}
           type="button"
         >
           -
         </button>
         <button className={s.btn}
-          onClick={() => dispatch(resetCounterAction())}
+          //onClick={() => dispatch(resetCounterAction())}
+          onClick={() => dispatch(reset())} // method slice
           type="button">
           0
         </button>
         <button
           className={s.btn}
           type="button"
-          onClick={() => dispatch(counterIncrementAction(15))}
+          onClick={() => dispatch(increment(15))}
         >
           +
         </button>
