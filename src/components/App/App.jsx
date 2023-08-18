@@ -74,4 +74,10 @@ export default App;
 
 // creation and implementation of the method Slice
 
-// method practice todoSlice , createSlice 
+// method practice todoSlice , createSlice
+ 
+// redux-persist
+
+ // npm i redux-persist
+
+ // installation and configuration of the library  redux-persist
