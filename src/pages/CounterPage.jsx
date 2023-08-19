@@ -5,7 +5,3 @@ const CounterPage = () => {
 };
 
 export default CounterPage;
-
-
-
-// SearchNewsPage 

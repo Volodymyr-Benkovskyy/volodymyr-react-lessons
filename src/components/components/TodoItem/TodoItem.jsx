@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { remove, updateStatus } from "../../redux/todo/todoSlice";
-//import { removeTodo, updateTodoStatus } from "../../redux/todo/todoActions";
+import { removeTodo, updateTodoStatus } from "../../redux/todo/todoActions";
 
 import s from "./TodoItem.module.scss";
 import { useDispatch } from "react-redux";
