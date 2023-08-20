@@ -23,3 +23,11 @@ const App = () => {
 };
 
 export default App;
+
+// method POST - Pushing Data firebaseio
+
+// addtodoRequest,
+//  addtodoSuccess,
+//  addtodoError,
+
+ // creation method POST - Pushing Data firebaseio , actions addtodoRequest ,addtodoSuccess ,addtodoError

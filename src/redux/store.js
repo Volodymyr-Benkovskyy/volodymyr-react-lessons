@@ -12,3 +12,5 @@ export const store = configureStore({
 });
 
 // npm i redux-logger
+
+// "https://[PROJECT_ID].firebaseio.com/users/jack/name.json";

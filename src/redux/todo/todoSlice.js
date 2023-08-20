@@ -6,21 +6,24 @@ const todoSlice = createSlice({
   initialState: {
     items: [],
     filter: "all",
+    isLoading: false,
+    error: null,
   },
   reducers: {
-    add: {
-      reducer(state, { payload }) {
-        return {
-          ...state,
-          items: [...state.items, payload],
-        };
-      },
-      prepare(form) {
-        return {
-          payload: { ...form, isDone: false, id: uuidv4() },
-        };
-      },
+    addtodoRequest(state) {
+      state.isLoading = true;
     },
+
+    addtodoSuccess(state, payload) {
+      state.isLoading = false;
+      state.items.push(payload);
+    },
+
+    addtodoError(state, payload) {
+      state.isLoading = false;
+      state.payload = payload;
+    },
+
     remove(state, { payload }) {
       return {
         ...state,
@@ -48,6 +51,13 @@ const todoSlice = createSlice({
   },
 });
 
-export const { add, remove, updateStatus, changeFilter } = todoSlice.actions;
+export const {
+  addtodoRequest,
+  addtodoSuccess,
+  addtodoError,
+  remove,
+  updateStatus,
+  changeFilter,
+} = todoSlice.actions;
 
 export default todoSlice.reducer;
