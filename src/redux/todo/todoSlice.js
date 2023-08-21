@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { v4 as uuidv4 } from "uuid";
+//import { v4 as uuidv4 } from "uuid";
 
 const todoSlice = createSlice({
   name: "todo",
@@ -10,26 +10,45 @@ const todoSlice = createSlice({
     error: null,
   },
   reducers: {
-    addtodoRequest(state) {
+    addTodoRequest(state) {
       state.isLoading = true;
     },
 
-    addtodoSuccess(state, payload) {
+    addTodoSuccess(state, payload) {
       state.isLoading = false;
       state.items.push(payload);
     },
 
-    addtodoError(state, payload) {
+    addTodoError(state, payload) {
       state.isLoading = false;
       state.payload = payload;
     },
 
-    remove(state, { payload }) {
-      return {
-        ...state,
-        items: state.items.filter((el) => el.id !== payload),
-      };
+    getTodoRequest(state) {
+      state.isLoading = true;
     },
+    getTodoSuccess(state, { payload }) {
+      state.isLoading = false;
+      state.items = payload;
+    },
+    getTodoError(state, { payload }) {
+      state.isLoading = false;
+      state.error = payload;
+    },
+
+    removeTodoRequest(state) {
+      state.isLoading = true;
+    },
+
+    removeTodoSuccess(state, { payload }) {
+      state.isLoading = false;
+      state.items = state.items.filter((el) => el.id !== payload);
+    },
+    removeTodoError(state, { payload }) {
+      state.isLoading = false;
+      state.error = payload;
+    },
+
     updateStatus(state, { payload }) {
       return {
         ...state,
@@ -52,10 +71,15 @@ const todoSlice = createSlice({
 });
 
 export const {
-  addtodoRequest,
-  addtodoSuccess,
-  addtodoError,
-  remove,
+  addTodoRequest,
+  addTodoSuccess,
+  addTodoError,
+  getTodoRequest,
+  getTodoSuccess,
+  getTodoError,
+  removeTodoRequest,
+  removeTodoSuccess,
+  removeTodoError,
   updateStatus,
   changeFilter,
 } = todoSlice.actions;

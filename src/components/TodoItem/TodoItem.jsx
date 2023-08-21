@@ -1,9 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
-import { remove, updateStatus } from "../../redux/todo/todoSlice";
-//import { removeTodo, updateTodoStatus } from "../../redux/todo/todoActions";
+import {  updateStatus } from "../../redux/todo/todoSlice";
+//import {  updateTodoStatus } from "../../redux/todo/todoActions";
 
 import s from "./TodoItem.module.scss";
 import { useDispatch } from "react-redux";
+import { removeTodoApi } from "../../servisec/firebaceApi";
+import { removeTodo } from "../../redux/todo/todoOperations";
 
 const TodoItem = ({ descr, id, date, priority, isDone }) => {
   const dispatch = useDispatch();
@@ -43,7 +45,7 @@ const TodoItem = ({ descr, id, date, priority, isDone }) => {
         />
         Done
       </label>
-      <button className={s.todoBtn} onClick={() => dispatch(remove(id))}>
+      <button className={s.todoBtn} onClick={() => dispatch(removeTodo(id))}>
         Remove
       </button>
     </li>

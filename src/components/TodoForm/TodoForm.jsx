@@ -1,13 +1,12 @@
 import { memo, useState } from "react";
-
-// import { addTodo } from "../../redux/todo/todoActions";
-import {  addtodoError, addtodoRequest, addtodoSuccess } from "../../redux/todo/todoSlice";
 import s from "./TodoForm.module.scss";
 import { useDispatch } from "react-redux";
-import { addTodoApi } from "../../servisec/firebaceApi";
+import { addtodo } from "../../redux/todo/todoOperations";
 
 
 // import { v4 as uuidv4 } from "uuid";
+
+
 
 const priorityOptions = {
   LOW: "low",
@@ -31,11 +30,7 @@ const TodoForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    //dispatch(add(form))
-    dispatch(addtodoRequest()) //  Action  isLoading = true 
-    addTodoApi({ ...form, isDone: false })
-      .then((todo) => dispatch(addtodoSuccess(todo)))
-      .catch((err)=> dispatch(addtodoError(err.message)))
+    dispatch(addtodo({ ...form, isDone: false }))    
   };
 
   return (
