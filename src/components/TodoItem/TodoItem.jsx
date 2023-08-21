@@ -1,11 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
-import {  updateStatus } from "../../redux/todo/todoSlice";
+//import {  updateStatus } from "../../redux/todo/todoSlice";
 //import {  updateTodoStatus } from "../../redux/todo/todoActions";
 
 import s from "./TodoItem.module.scss";
 import { useDispatch } from "react-redux";
-import { removeTodoApi } from "../../servisec/firebaceApi";
-import { removeTodo } from "../../redux/todo/todoOperations";
+//import { removeTodoApi } from "../../servisec/firebaceApi";
+import { removeTodo, updateTodoStatus } from "../../redux/todo/todoOperations";
 
 const TodoItem = ({ descr, id, date, priority, isDone }) => {
   const dispatch = useDispatch();
@@ -41,7 +41,9 @@ const TodoItem = ({ descr, id, date, priority, isDone }) => {
           type="checkbox"
           name="status"
           checked={isDone}
-          onChange={(e) => dispatch(updateStatus(id))}
+           onChange={(e) =>
+            dispatch(updateTodoStatus(id, { isDone: e.target.checked }))
+          }
         />
         Done
       </label>

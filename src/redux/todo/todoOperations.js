@@ -2,6 +2,7 @@ import {
   addTodoApi,
   getTodoApi,
   removeTodoApi,
+  updateTodoStatusApi,
 } from "../../servisec/firebaceApi";
 import {
   addTodoError,
@@ -13,6 +14,9 @@ import {
   removeTodoError,
   removeTodoRequest,
   removeTodoSuccess,
+  updateTodoStatusError,
+  updateTodoStatusRequest,
+  updateTodoStatusSuccess,
 } from "./todoSlice";
 
 export const addtodo = (form) => {
@@ -36,6 +40,14 @@ export const removeTodo = (id) => (dispatch) => {
   removeTodoApi(id)
     .then((data) => dispatch(removeTodoSuccess(id)))
     .catch((err) => dispatch(removeTodoError(err)));
+};
+
+export const updateTodoStatus = (id, data) => (dispatch) => {
+  dispatch(updateTodoStatusRequest()); // request
+
+  updateTodoStatusApi(id, data)
+    .then((status) => dispatch(updateTodoStatusSuccess({ ...status, id }))) // success | p: {isDone: true, id}
+    .catch((err) => dispatch(updateTodoStatusError(err.message))); // error
 };
 
 //addTodoRequest() => action

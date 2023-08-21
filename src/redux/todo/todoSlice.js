@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-//import { v4 as uuidv4 } from "uuid";
 
 const todoSlice = createSlice({
   name: "todo",
@@ -13,17 +12,14 @@ const todoSlice = createSlice({
     addTodoRequest(state) {
       state.isLoading = true;
     },
-
-    addTodoSuccess(state, payload) {
+    addTodoSuccess(state, { payload }) {
       state.isLoading = false;
       state.items.push(payload);
     },
-
-    addTodoError(state, payload) {
+    addTodoError(state, { payload }) {
       state.isLoading = false;
-      state.payload = payload;
+      state.error = payload;
     },
-
     getTodoRequest(state) {
       state.isLoading = true;
     },
@@ -35,11 +31,9 @@ const todoSlice = createSlice({
       state.isLoading = false;
       state.error = payload;
     },
-
     removeTodoRequest(state) {
       state.isLoading = true;
     },
-
     removeTodoSuccess(state, { payload }) {
       state.isLoading = false;
       state.items = state.items.filter((el) => el.id !== payload);
@@ -48,15 +42,19 @@ const todoSlice = createSlice({
       state.isLoading = false;
       state.error = payload;
     },
-
-    updateStatus(state, { payload }) {
-      return {
-        ...state,
-        items: state.items.map((el) =>
-          el.id !== payload ? el : { ...el, isDone: !el.isDone }
-        ),
-      };
+    updateTodoStatusRequest(state) {
+      state.isLoading = true;
     },
+    updateTodoStatusSuccess(state, { payload }) {
+      state.isLoading = false;
+      const idx = state.items.findIndex((el) => el.id === payload.id);
+      state.items[idx] = { ...state.items[idx], ...payload };
+    },
+    updateTodoStatusError(state, { payload }) {
+      state.isLoading = false;
+      state.error = payload;
+    },
+
     changeFilter: {
       reducer(state, { payload }) {
         state.filter = payload;
@@ -80,6 +78,9 @@ export const {
   removeTodoRequest,
   removeTodoSuccess,
   removeTodoError,
+  updateTodoStatusRequest,
+  updateTodoStatusSuccess,
+  updateTodoStatusError,
   updateStatus,
   changeFilter,
 } = todoSlice.actions;
