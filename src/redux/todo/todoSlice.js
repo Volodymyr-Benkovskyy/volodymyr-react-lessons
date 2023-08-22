@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { addTodo } from "./todoOperations";
 
 const todoSlice = createSlice({
   name: "todo",
@@ -9,17 +10,6 @@ const todoSlice = createSlice({
     error: null,
   },
   reducers: {
-    addTodoRequest(state) {
-      state.isLoading = true;
-    },
-    addTodoSuccess(state, { payload }) {
-      state.isLoading = false;
-      state.items.push(payload);
-    },
-    addTodoError(state, { payload }) {
-      state.isLoading = false;
-      state.error = payload;
-    },
     getTodoRequest(state) {
       state.isLoading = true;
     },
@@ -66,12 +56,24 @@ const todoSlice = createSlice({
       },
     },
   },
+  extraReducers: (builder) => {
+    builder
+      .addCase(addTodo.pending, (state) => {
+        state.isLoading = true;
+      })
+
+      .addCase(addTodo.fulfilled, (state, { payload }) => {
+        state.isLoading = false;
+        state.items.push(payload);
+      })
+      .addCase(addTodo.rejected, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = payload;
+      });
+  },
 });
 
 export const {
-  addTodoRequest,
-  addTodoSuccess,
-  addTodoError,
   getTodoRequest,
   getTodoSuccess,
   getTodoError,

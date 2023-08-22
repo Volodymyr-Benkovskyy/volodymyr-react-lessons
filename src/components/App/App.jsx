@@ -31,3 +31,8 @@ export default App;
 //  addtodoError,
 
  // creation method POST - Pushing Data firebaseio , actions addtodoRequest ,addtodoSuccess ,addtodoError
+
+      // component creation Loader
+
+
+    // created methods createAsyncThunk, rejectWithValue, end  extraReducers
