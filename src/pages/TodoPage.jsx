@@ -19,15 +19,21 @@ const TodoPage = () => {
 
   return (
     <>
-      <ToDoForm />
-      <PrioritySelect />
-      <Loader/>
-      <ToDoList />
+      <Loader>
+        <ToDoForm />
+        <PrioritySelect />
+        <ToDoList />
+      </Loader>
     </>
-  );
-};
+  )
+}
 
-// useSelector - це кастомний хук в бібліотеці React Redux, 
-//який дозволяє компонентам React підписуватися на частину стану, 
-//збереженого в Redux - сховищі, і автоматично оновлюватися при зміні цього стану.
+
+
 export default TodoPage;
+
+
+// useSelector - це кастомний хук в бібліотеці React Redux,
+//який дозволяє компонентам React підписуватися на частину стану,
+//збереженого в Redux - сховищі, і автоматично оновлюватися при зміні цього стану.
+      
