@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { addTodo } from "./todoOperations";
+import { addTodo, getTodo } from "./todoOperations";
 
 const todoSlice = createSlice({
   name: "todo",
@@ -10,17 +10,6 @@ const todoSlice = createSlice({
     error: null,
   },
   reducers: {
-    getTodoRequest(state) {
-      state.isLoading = true;
-    },
-    getTodoSuccess(state, { payload }) {
-      state.isLoading = false;
-      state.items = payload;
-    },
-    getTodoError(state, { payload }) {
-      state.isLoading = false;
-      state.error = payload;
-    },
     removeTodoRequest(state) {
       state.isLoading = true;
     },
@@ -39,6 +28,7 @@ const todoSlice = createSlice({
       state.isLoading = false;
       const idx = state.items.findIndex((el) => el.id === payload.id);
       state.items[idx] = { ...state.items[idx], ...payload };
+      state.error = null;
     },
     updateTodoStatusError(state, { payload }) {
       state.isLoading = false;
@@ -56,6 +46,7 @@ const todoSlice = createSlice({
       },
     },
   },
+
   extraReducers: (builder) => {
     builder
       .addCase(addTodo.pending, (state) => {
@@ -65,8 +56,24 @@ const todoSlice = createSlice({
       .addCase(addTodo.fulfilled, (state, { payload }) => {
         state.isLoading = false;
         state.items.push(payload);
+        state.error = null;
       })
       .addCase(addTodo.rejected, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = payload;
+      })
+
+      .addCase(getTodo.pending, (state) => {
+        state.isLoading = true;
+      })
+
+      .addCase(getTodo.fulfilled, (state, { payload }) => {
+        state.isLoading = false;
+        state.items = payload;
+        state.error = null;
+      })
+
+      .addCase(getTodo.rejected, (state, { payload }) => {
         state.isLoading = false;
         state.error = payload;
       });
@@ -74,9 +81,6 @@ const todoSlice = createSlice({
 });
 
 export const {
-  getTodoRequest,
-  getTodoSuccess,
-  getTodoError,
   removeTodoRequest,
   removeTodoSuccess,
   removeTodoError,

@@ -7,12 +7,6 @@ import {
   updateTodoStatusApi,
 } from "../../servisec/firebaceApi";
 import {
-  // addTodoError,
-  // addTodoRequest,
-  // addTodoSuccess,
-  getTodoError,
-  getTodoRequest,
-  getTodoSuccess,
   removeTodoError,
   removeTodoRequest,
   removeTodoSuccess,
@@ -20,15 +14,6 @@ import {
   updateTodoStatusRequest,
   updateTodoStatusSuccess,
 } from "./todoSlice";
-
-// export const addtodo = (form) => {
-//   return (dispatch, getState) => {
-//     dispatch(addTodoRequest()); //  Action  isLoading = true
-//     addTodoApi({ ...form, isDone: false })
-//       .then((todo) => dispatch(addTodoSuccess(todo)))
-//       .catch((err) => dispatch(addTodoError(err.message)));
-//   };
-// };
 
 // createAsyncThunk - типи екшенів які створить нам сам матод ==>>
 // => {type: odo/add/pending} | // => {type: odo/add/fulfilled} | // => {type: odo/add/rejected}
@@ -43,12 +28,17 @@ export const addTodo = createAsyncThunk("todo/add", async (form, thunkApi) => {
   }
 });
 
-export const getTodo = () => (dispatch) => {
-  dispatch(getTodoRequest());
-  getTodoApi()
-    .then((data) => dispatch(getTodoSuccess(data)))
-    .catch((err) => dispatch(getTodoError(err.message)));
-};
+export const getTodo = createAsyncThunk(
+  "todo/get",
+  async (_, { rejectWithValue }) => {
+    try {
+      const data = await getTodoApi();
+      return data;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
 
 export const removeTodo = (id) => (dispatch) => {
   dispatch(removeTodoRequest());
