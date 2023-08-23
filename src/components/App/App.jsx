@@ -38,3 +38,5 @@ export default App;
     // created methods createAsyncThunk, rejectWithValue, end  extraReducers
 
     // created  getTodo - createAsyncThunk end action extraReducers
+
+// creation of actions by method addMatcher

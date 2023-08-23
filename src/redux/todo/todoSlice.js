@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { addTodo, getTodo } from "./todoOperations";
+import { addTodo, getTodo, removeTodo } from "./todoOperations";
 
 const todoSlice = createSlice({
   name: "todo",
@@ -49,34 +49,57 @@ const todoSlice = createSlice({
 
   extraReducers: (builder) => {
     builder
-      .addCase(addTodo.pending, (state) => {
-        state.isLoading = true;
-      })
 
       .addCase(addTodo.fulfilled, (state, { payload }) => {
-        state.isLoading = false;
         state.items.push(payload);
-        state.error = null;
-      })
-      .addCase(addTodo.rejected, (state, { payload }) => {
-        state.isLoading = false;
-        state.error = payload;
-      })
-
-      .addCase(getTodo.pending, (state) => {
-        state.isLoading = true;
       })
 
       .addCase(getTodo.fulfilled, (state, { payload }) => {
-        state.isLoading = false;
         state.items = payload;
-        state.error = null;
       })
 
-      .addCase(getTodo.rejected, (state, { payload }) => {
-        state.isLoading = false;
-        state.error = payload;
-      });
+      .addCase(removeTodo.fulfilled, (state, { payload }) => {
+        state.items = state.items.filter((el) => el.id !== payload);
+      })
+
+      .addMatcher(
+        (action) => {
+          if (
+            action.type.startsWith("/todo") &&
+            action.type.endsWith("/pending")
+          )
+            return true;
+        },
+        (state) => {
+          state.isLoading = true;
+        }
+      )
+      .addMarcher(
+        (action) => {
+          if (
+            action.type.startsWith("/todo") &&
+            action.type.endsWith("/rejected")
+          )
+            return true;
+        },
+        (state, { payload }) => {
+          state.isLoading = false;
+          state.error = payload;
+        }
+      )
+      .addMatcher(
+        (action) => {
+          if (
+            action.type.startsWith("/todo") &&
+            action.type.endsWith("/fulfilled")
+          )
+            return true;
+        },
+        (state) => {
+          state.isLoading = false;
+          state.error = null;
+        }
+      );
   },
 });
 

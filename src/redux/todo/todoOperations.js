@@ -7,9 +7,6 @@ import {
   updateTodoStatusApi,
 } from "../../servisec/firebaceApi";
 import {
-  removeTodoError,
-  removeTodoRequest,
-  removeTodoSuccess,
   updateTodoStatusError,
   updateTodoStatusRequest,
   updateTodoStatusSuccess,
@@ -40,12 +37,24 @@ export const getTodo = createAsyncThunk(
   }
 );
 
-export const removeTodo = (id) => (dispatch) => {
-  dispatch(removeTodoRequest());
-  removeTodoApi(id)
-    .then((data) => dispatch(removeTodoSuccess(id)))
-    .catch((err) => dispatch(removeTodoError(err)));
-};
+// export const removeTodo = (id) => (dispatch) => {
+//   dispatch(removeTodoRequest());
+//   removeTodoApi(id)
+//     .then((data) => dispatch(removeTodoSuccess(id)))
+//     .catch((err) => dispatch(removeTodoError(err)));
+// };
+
+export const removeTodo = createAsyncThunk(
+  "todo/remove",
+  async (id, { rejectWithValue }) => {
+    try {
+      await removeTodoApi(id);
+      return id;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
 
 export const updateTodoStatus = (id, data) => (dispatch) => {
   dispatch(updateTodoStatusRequest()); // request
