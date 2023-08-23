@@ -1,5 +1,11 @@
+import {
+  addTodo,
+  getTodo,
+  removeTodo,
+  updateTodoStatus,
+} from "./todoOperations";
+
 import { createSlice } from "@reduxjs/toolkit";
-import { addTodo, getTodo, removeTodo } from "./todoOperations";
 
 const todoSlice = createSlice({
   name: "todo",
@@ -10,31 +16,6 @@ const todoSlice = createSlice({
     error: null,
   },
   reducers: {
-    removeTodoRequest(state) {
-      state.isLoading = true;
-    },
-    removeTodoSuccess(state, { payload }) {
-      state.isLoading = false;
-      state.items = state.items.filter((el) => el.id !== payload);
-    },
-    removeTodoError(state, { payload }) {
-      state.isLoading = false;
-      state.error = payload;
-    },
-    updateTodoStatusRequest(state) {
-      state.isLoading = true;
-    },
-    updateTodoStatusSuccess(state, { payload }) {
-      state.isLoading = false;
-      const idx = state.items.findIndex((el) => el.id === payload.id);
-      state.items[idx] = { ...state.items[idx], ...payload };
-      state.error = null;
-    },
-    updateTodoStatusError(state, { payload }) {
-      state.isLoading = false;
-      state.error = payload;
-    },
-
     changeFilter: {
       reducer(state, { payload }) {
         state.filter = payload;
@@ -46,26 +27,26 @@ const todoSlice = createSlice({
       },
     },
   },
-
   extraReducers: (builder) => {
+    // addCase | addMatcher |
     builder
-
       .addCase(addTodo.fulfilled, (state, { payload }) => {
         state.items.push(payload);
       })
-
       .addCase(getTodo.fulfilled, (state, { payload }) => {
         state.items = payload;
       })
-
       .addCase(removeTodo.fulfilled, (state, { payload }) => {
         state.items = state.items.filter((el) => el.id !== payload);
       })
-
+      .addCase(updateTodoStatus.fulfilled, (state, { payload }) => {
+        const idx = state.items.findIndex((el) => el.id === payload.id);
+        state.items[idx] = { ...state.items[idx], ...payload };
+      })
       .addMatcher(
         (action) => {
           if (
-            action.type.startsWith("/todo") &&
+            action.type.startsWith("todo") &&
             action.type.endsWith("/pending")
           )
             return true;
@@ -74,10 +55,10 @@ const todoSlice = createSlice({
           state.isLoading = true;
         }
       )
-      .addMarcher(
+      .addMatcher(
         (action) => {
           if (
-            action.type.startsWith("/todo") &&
+            action.type.startsWith("todo") &&
             action.type.endsWith("/rejected")
           )
             return true;
@@ -90,7 +71,7 @@ const todoSlice = createSlice({
       .addMatcher(
         (action) => {
           if (
-            action.type.startsWith("/todo") &&
+            action.type.startsWith("todo") &&
             action.type.endsWith("/fulfilled")
           )
             return true;
@@ -103,15 +84,6 @@ const todoSlice = createSlice({
   },
 });
 
-export const {
-  removeTodoRequest,
-  removeTodoSuccess,
-  removeTodoError,
-  updateTodoStatusRequest,
-  updateTodoStatusSuccess,
-  updateTodoStatusError,
-  updateStatus,
-  changeFilter,
-} = todoSlice.actions;
+export const { changeFilter } = todoSlice.actions;
 
 export default todoSlice.reducer;

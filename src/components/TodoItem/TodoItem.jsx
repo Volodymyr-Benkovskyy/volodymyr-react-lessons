@@ -42,7 +42,7 @@ const TodoItem = ({ descr, id, date, priority, isDone }) => {
           name="status"
           checked={isDone}
            onChange={(e) =>
-            dispatch(updateTodoStatus(id, { isDone: e.target.checked }))
+            dispatch(updateTodoStatus({id, data: { isDone: e.target.checked }}))
           }
         />
         Done

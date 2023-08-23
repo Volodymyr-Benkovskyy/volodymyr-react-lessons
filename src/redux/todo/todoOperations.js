@@ -6,11 +6,6 @@ import {
   removeTodoApi,
   updateTodoStatusApi,
 } from "../../servisec/firebaceApi";
-import {
-  updateTodoStatusError,
-  updateTodoStatusRequest,
-  updateTodoStatusSuccess,
-} from "./todoSlice";
 
 // createAsyncThunk - типи екшенів які створить нам сам матод ==>>
 // => {type: odo/add/pending} | // => {type: odo/add/fulfilled} | // => {type: odo/add/rejected}
@@ -56,13 +51,17 @@ export const removeTodo = createAsyncThunk(
   }
 );
 
-export const updateTodoStatus = (id, data) => (dispatch) => {
-  dispatch(updateTodoStatusRequest()); // request
-
-  updateTodoStatusApi(id, data)
-    .then((status) => dispatch(updateTodoStatusSuccess({ ...status, id }))) // success | p: {isDone: true, id}
-    .catch((err) => dispatch(updateTodoStatusError(err.message))); // error
-};
+export const updateTodoStatus = createAsyncThunk(
+  "todo/update/status",
+  async ({ id, data }, { rejectWithValue }) => {
+    try {
+      const status = await updateTodoStatusApi(id, data);
+      return { ...status, id };
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
 
 // createAsyncThunk ==>>
 // Метод createAsyncThunk є функціональним додатком до бібліотеки Redux Toolkit,

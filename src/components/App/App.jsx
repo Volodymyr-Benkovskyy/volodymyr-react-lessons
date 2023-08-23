@@ -40,3 +40,6 @@ export default App;
     // created  getTodo - createAsyncThunk end action extraReducers
 
 // creation of actions by method addMatcher
+
+
+// creation and application  createSelector, selectTodo, selectFilter

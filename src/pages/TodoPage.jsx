@@ -5,12 +5,13 @@ import ToDoList from "../components/TodoList/TodoList";
 import { useDispatch, useSelector } from "react-redux";
 import { getTodo } from "../redux/todo/todoOperations";
 import Loader from "../components/Loader/Loader";
+import { selectIsTodoExist } from "../redux/todo/todoSelectors";
 //import { getTodoApi } from "../servisec/firebaceApi";
 
 const TodoPage = () => {
   const dispatch = useDispatch();
   // підписуємся на частину стану в reduxs  і робиться перевірка на буль після чого іде запит
-  const isTodoExist = useSelector((state) => Boolean(state.todo.items.length));
+  const isTodoExist = useSelector(selectIsTodoExist);
 
   useEffect(() => {
    !isTodoExist &&  dispatch(getTodo());
