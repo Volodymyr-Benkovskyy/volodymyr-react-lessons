@@ -1,12 +1,11 @@
-import {  selectFilteredTodo } from "../../redux/todo/todoSelectors";
 import TodoItem from "../TodoItem/TodoItem";
 import s from "./TodoList.module.scss";
+import { selectFilteredTodo } from "../../redux/todo/todoSelectors";
 import { useSelector } from "react-redux";
 
 const TodoList = () => {
- 
   const filteredTodo = useSelector(selectFilteredTodo);
- console.log('render todoList');
+
   return (
     <ul className={s.container}>
       {filteredTodo.map((todoItemProps) => (
@@ -16,4 +15,4 @@ const TodoList = () => {
   );
 };
 
-export default TodoList; 
+export default TodoList;

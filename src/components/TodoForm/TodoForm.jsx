@@ -1,12 +1,8 @@
 import { memo, useState } from "react";
+
+import { addTodo } from "../../redux/todo/todoOperations";
 import s from "./TodoForm.module.scss";
 import { useDispatch } from "react-redux";
-import { addTodo } from "../../redux/todo/todoOperations";
-
-
-// import { v4 as uuidv4 } from "uuid";
-
-
 
 const priorityOptions = {
   LOW: "low",
@@ -14,19 +10,11 @@ const priorityOptions = {
   HIGH: "high",
 };
 
- const  getFormattedTodayDateForInput = () => {
-    const today = new Date();
-    const year = today.getFullYear();
-    const month = String(today.getMonth() + 1).padStart(2, '0');
-    const day = String(today.getDate()).padStart(2, '0');
-    return `${year}-${month}-${day}`;
-}
-  
 const TodoForm = () => {
   const dispatch = useDispatch();
 
   const [form, setForm] = useState({
-    date: getFormattedTodayDateForInput(),
+    date: "2023-05-03",
     descr: "",
     priority: "",
   });
@@ -38,7 +26,7 @@ const TodoForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(addTodo({ ...form, isDone: false }))    
+    dispatch(addTodo({ ...form, isDone: false })); // !
   };
 
   return (
@@ -116,9 +104,3 @@ const TodoForm = () => {
 };
 
 export default memo(TodoForm);
-
-
-
-
-  // Функція для отримання сьогоднішньої дати у форматі для <input type="date">
-  

@@ -1,7 +1,5 @@
 import { useSelector } from "react-redux";
 
-
-
 const Loader = ({ children }) => {
   const isLoading = useSelector((state) => state.todo.isLoading);
 

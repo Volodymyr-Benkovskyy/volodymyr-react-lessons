@@ -1,6 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
 
-// import { changePriority } from "../../redux/todo/todoActions";
 import { changeFilter } from "../../redux/todo/todoSlice";
 import s from "./PrioritySelect.module.scss";
 import { selectFilter } from "../../redux/todo/todoSelectors";
@@ -8,8 +7,6 @@ import { selectFilter } from "../../redux/todo/todoSelectors";
 const PrioritySelect = () => {
   const dispatch = useDispatch();
   const priority = useSelector(selectFilter);
-
-  //console.log("Render select");
 
   return (
     <select

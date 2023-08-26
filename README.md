@@ -1,3 +1,7 @@
-### 1. createAsyncThunk
+# bc_50 - React
 
-### 2. selectors(reselect)
+# Lesson-16(auth)
+
+### 1. auth | token
+### 2. AuthForm
+### 3. persist token

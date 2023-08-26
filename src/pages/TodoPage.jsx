@@ -1,39 +1,34 @@
-import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+
+import Loader from "../components/Loader/Loader";
 import PrioritySelect from "../components/PrioritySelect/PrioritySelect";
 import ToDoForm from "../components/TodoForm/TodoForm";
 import ToDoList from "../components/TodoList/TodoList";
-import { useDispatch, useSelector } from "react-redux";
 import { getTodo } from "../redux/todo/todoOperations";
-import Loader from "../components/Loader/Loader";
+import { increment } from "../redux/counter/counterSlice";
 import { selectIsTodoExist } from "../redux/todo/todoSelectors";
-//import { getTodoApi } from "../servisec/firebaceApi";
+import { useEffect } from "react";
 
 const TodoPage = () => {
   const dispatch = useDispatch();
-  // підписуємся на частину стану в reduxs  і робиться перевірка на буль після чого іде запит
   const isTodoExist = useSelector(selectIsTodoExist);
 
   useEffect(() => {
-   !isTodoExist &&  dispatch(getTodo());
-  }, [dispatch,isTodoExist ]);
-
+    !isTodoExist && dispatch(getTodo());
+  }, [dispatch, isTodoExist]);
 
   return (
     <>
       <Loader>
+        <button type="button" onClick={() => dispatch(increment(25))}>
+          Click
+        </button>
         <ToDoForm />
         <PrioritySelect />
         <ToDoList />
       </Loader>
     </>
-  )
-}
-
-
+  );
+};
 
 export default TodoPage;
-
-
-// useSelector - це кастомний хук в бібліотеці React Redux,
-//який дозволяє компонентам React підписуватися на частину стану,
-//збереженого в Redux - сховищі, і автоматично оновлюватися при зміні цього стану.

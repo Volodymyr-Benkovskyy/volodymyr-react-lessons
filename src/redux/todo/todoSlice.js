@@ -84,6 +84,15 @@ const todoSlice = createSlice({
   },
 });
 
-export const { changeFilter } = todoSlice.actions;
+export const {
+  removeTodoRequest,
+  removeTodoSuccess,
+  removeTodoError,
+  updateTodoStatusRequest,
+  updateTodoStatusSuccess,
+  updateTodoStatusError,
+  updateStatus,
+  changeFilter,
+} = todoSlice.actions;
 
 export default todoSlice.reducer;
